@@ -1,0 +1,12 @@
+{
+	"require":{
+		"slim/slim":"^3.0",
+		"catfan/Medoo": "^1.5"
+	},
+	"autoload-dev":{
+		"psr-4":{
+			"Controllers\\":"controllers/",
+			"Common\\":"common/"
+		}
+	}
+}
