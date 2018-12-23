@@ -14,3 +14,4 @@ $app->post('/updateScore', \Controllers\StudentController::class. ':updateScore'
 $app->get('/showTeacher',\Controllers\RegistController::class. ':showTeacher');
 $app->get('/teacherInfor',\Controllers\TeacherController::class. ':teacherInfor');
 $app->get('/unselected',\Controllers\TeacherController::class. ':unselected');
+$app->get('/showStudentScore',\Controllers\TeacherController::class. ':showStudentScore');
