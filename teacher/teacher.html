@@ -253,7 +253,7 @@
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
           <p class="centered"><a href="profile.html"><img src="img/头像.jpg" class="img-circle" width="80"></a></p>
-          <h5 class="centered">胡峰松</h5>
+          <h5 class="centered" id="TeaName1"></h5>
           <li class="mt">
             <a class="active" href="personinfo.html">
               <i class="fa fa-dashboard"></i>
@@ -314,17 +314,18 @@
                       <div class="row content-panel">
                         <div class="col-md-4 profile-text mt mb centered">
                           <div class="right-divider hidden-sm hidden-xs">
-                            <h4>25</h4>
-                            <h6>文件</h6>
-                            <h4>200</h4>
-                            <h6>最近浏览</h6>
+
+                            <h4>文件</h4>
+                            <h6>25</h6>
+                            <h4>最近浏览</h4>
+                            <h6 id="ViewNum"></h6>
                             <h4>学生数</h4>
-                            <h6>10</h6>
+                            <h6 id="StuNum"></h6>
                           </div>
                         </div>
                         <!-- /col-md-4 -->
                         <div class="col-md-4 profile-text">
-                          <h3>胡峰松</h3>
+                          <h3 id="TeaName2"></h3>
                           <h6>身份：老师</h6>
                           <p>清风自来</p>
                           <br>
@@ -395,17 +396,17 @@
                                   <h4>最近一个月内点击量最高的网页</h4>
                                   <div class="row centered mt mb">
                                     <div class="col-sm-4">
-                                      <h1>①</h1>
+                                      <h2>CTFtime</h2>
                                       <h3>18次</h3>
                                       <a href="http://hnu.shiyanbar.com/" target="_blank">click
                                       </div>
                                     <div class="col-sm-4">
-                                      <h1>②</h1>
+                                      <h2>问鼎杯</h2>
                                       <h3>12次</h3>
                                       <a href="http://portal.hnu.edu.cn/" target="_blank">click
                                       </div>
                                     <div class="col-sm-4">
-                                      <h1>③</h1>
+                                      <h2>湖南大学官网</h2>
                                       <h3>8次</h3>
                                       <a href="http://jwc.hnu.edu.cn/" target="_blank">click
                                       </div>
@@ -528,6 +529,17 @@
   </script>
   <script type="application/javascript">
     $(document).ready(function() {
+        if (localStorage.pagecount) {
+          localStorage.pagecount=Number(localStorage.pagecount) +1;
+        }
+        else {
+          localStorage.pagecount=1;
+        }
+        $("#TeaName1").text(localStorage.getItem("TeaName"));
+        $("#TeaName2").text(localStorage.getItem("TeaName"));
+        $("#ViewNum").text(localStorage.pagecount);
+        $("#StuNum").text(localStorage.getItem("StuNum"));
+
       $("#date-popover").popover({
         html: true,
         trigger: "manual"

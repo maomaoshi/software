@@ -374,17 +374,17 @@
             </br>
               <!-- Single button -->
               <div class="btn-group">
-                  <select class="btn btn-theme02" data-toggle="dropdown" name="moreselAge" id="chose">  
+                  <select class="btn btn-theme02" data-toggle="dropdown" name="moreselAge"  id="choose_course">
                   
                       <option value="class1">课程1</option>  
                       <option value="class2">课程2</option>
                       <option value="class3">课程3</option>
                       <option value="class4">课程4</option>
-                      <option value="class5">课程5</option>>
+                      <option value="class5">课程5</option>
                     </select> 
               </div>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <button type="button" class="btn btn-theme"><i class="fa fa-heart"></i>增加</button>
+              <button type="button" class="btn btn-theme" onclick="addCourse()"><i class="fa fa-heart"></i>增加</button>
               <button type="button" class="btn btn-theme04"><i class="fa fa-check"></i> 删除</button>
             </div>
 
@@ -411,6 +411,51 @@
   <script src="lib/jquery.nicescroll.js" type="text/javascript"></script>
   <!--common script for all pages-->
   <script src="lib/common-scripts.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+    $.ajax({
+        type: "GET",
+        url: "../api/unselected",
+        dataType : "json",
+        success: function(data){
+            var dh = "";
+            for(var i=0;i<data.length;i++) {
+                var nowcourse = data[i]["course_name"];
+                var id = data[i]['id'];
+                dh += '<option value="'+id+'">'+nowcourse+'</option>';//课程id作为value值
+            }
+				document.getElementById('choose_course').innerHTML=dh;
+        },
+        error:function(data){
+            alert('无课程可添加');
+        }
+    });
+    });
+
+    function addCourse(){
+        var obj = document.getElementById("choose_course");
+        var index = obj.selectedIndex;
+        var value = obj.options[index].value;
+        $.ajax({
+          type: "POST",
+          url: "../api/addCourse",
+          data: {"course_id":[value]},
+          dataType: "json",
+          success: function(data){
+              if(data['status']=="fail"){
+                  alert("添加课程失败");
+              }
+              else{
+                  alert("添加课程成功");
+              }
+          },
+          error:function(data){
+              alert('Connect Error');
+          }
+      });
+    }
+
+  </script>
 </body>
 
 </html>

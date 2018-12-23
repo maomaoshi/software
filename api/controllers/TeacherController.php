@@ -31,7 +31,6 @@ class TeacherController extends BaseController
 		$sth->bindParam(':work_id',$_SESSION['id'],PDO::PARAM_INT);
 		$sth->execute();
 		$course = $sth->fetchAll(PDO::FETCH_ASSOC);
-		var_dump(json_encode($course));
 		return json_encode($course);
 	}
 
@@ -61,7 +60,6 @@ class TeacherController extends BaseController
 	}
 	public function addCourse()
 	{
-		$_SESSION['id'] = "1234";
 		$post = $this->container->get('request')->getParsedBody();
 		if(!isset($post['course_id'])){
 			return $this->json_fail('fail');
