@@ -98,11 +98,33 @@ class TeacherController extends BaseController
 		return json_encode($info);
 
 	}
-	/*public function showStudentScore()
+	public function showStudentScore()
 	{
+		$_SESSION['id'] = "1234567";
 		$sth = $this->container['db']->pdo->prepare('
-				
-			')
-	}*/
+				SELECT
+					students.stu_id,
+					students.`name`,
+					COUNT(courses.course_name) AS courseNum,
+					GROUP_CONCAT(courses.course_name) AS courseName,
+					GROUP_CONCAT(student_score.score) AS courseScore
+				FROM
+					students 
+				INNER JOIN teacher_course ON teacher_course.teacher_work_id = :work_id
+				AND students.teacher_work_id = :work_id
+				INNER JOIN courses ON courses.id = teacher_course.course_id
+				LEFT JOIN student_score ON student_score.stu_id = students.stu_id
+				AND student_score.course_id = teacher_course.course_id
+				GROUP BY students.stu_id, students.`name`
+			');
+		$sth->bindParam(':work_id',$_SESSION['id'],PDO::PARAM_INT);
+		$sth->execute();
+		$table = $sth->fetchAll(PDO::FETCH_ASSOC);
+		var_dump($table);
+		/*foreach ($table as $key => $value) {
+			$courseArr = explode(',', $value['courseName']);
+			$scoreArr = explode(',', $value['courseScore']);
+		}*/
+	}
 
 }
