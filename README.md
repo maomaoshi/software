@@ -72,8 +72,10 @@
 	+ 确认密码
 * captcha
 	+ 验证码
-* teacherName
-	+ 老师姓名
+* teacher_id
+	+ 
+* teacher_work_id
+	+ 工号
 
 ### 0x04 老师注册
 #### method post
@@ -88,8 +90,6 @@
 	+ 密码
 * repassword
 	+ 确认密码
-* captcha
-	+ 验证码
 
 
 ### 0x04老师端显示可选课程

@@ -32,13 +32,16 @@ class LoginController extends BaseController
 	public function teacherLogin()
 	{
 		$postArr = $this->container->get('request')->getParsedBody();
+		if (!(isset($postArr['id']) && isset($postArr['password']))) {
+			return $this->json_fail('fail');
+		}
 		//检查是否为空，是否有非法输入
 		Common\CheckCommon::inputCheck($postArr);
 		//验证码是否正确
-		$_SESSION['captcha'] = "abcd";
-		if ($_SESSION['captcha'] !== $postArr['captcha']) {
+		//$_SESSION['captcha'] = "abcd";
+		/*if ($_SESSION['captcha'] !== $postArr['captcha']) {
 			return $this->json_fail('captcha error');
-		}
+		}*/
 		//工号和密码是否正确
 		$result = $this->container['db']->has('teachers',[
 			"AND"=>[
@@ -51,20 +54,23 @@ class LoginController extends BaseController
 			return $this->json_success('login succsess');
 		}
 		else{
-			return $this->json_fail('word ID or password is error');
+			return $this->json_fail('work ID or password is error');
 		}
 	}
 
 	public function studentLogin()
 	{	
 		$postArr = $this->container->get('request')->getParsedBody();
+		if (!(isset($postArr['id']) && isset($postArr['password']))) {
+			return $this->json_fail('fail');
+		}
 		//检查是否为空，是否有非法输入
 		Common\CheckCommon::inputCheck($postArr);
 		//验证码是否正确
-		$_SESSION['captcha'] = "abcd";
+		/*$_SESSION['captcha'] = "abcd";
 		if ($_SESSION['captcha'] !== $postArr['captcha']) {
 			return $this->json_fail('captcha error');
-		}
+		}*/
 		//学号和密码是否正确
 		$result = $this->container['db']->has('students',[
 			"AND"=>[
