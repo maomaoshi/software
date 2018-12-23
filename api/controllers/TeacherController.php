@@ -18,7 +18,7 @@ class TeacherController extends BaseController
 			FROM
 				courses
 			WHERE
-				id NOT IN (
+				id IN (
 					SELECT
 						course_id
 					FROM
@@ -32,6 +32,31 @@ class TeacherController extends BaseController
 		$sth->execute();
 		$course = $sth->fetchAll(PDO::FETCH_ASSOC);
 		var_dump(json_encode($course));
+		return json_encode($course);
+	}
+
+	public function unselected()
+	{
+		$sth = $this->container['db']->pdo->prepare("
+			SELECT
+				id,
+				course_name
+			FROM
+				courses
+			WHERE
+				id NOT IN (
+					SELECT
+						course_id
+					FROM
+						teacher_course
+					WHERE
+						teacher_work_id = :work_id
+					AND is_use = 1
+				)
+		");
+		$sth->bindParam(':work_id',$_SESSION['id'],PDO::PARAM_INT);
+		$sth->execute();
+		$course = $sth->fetchAll(PDO::FETCH_ASSOC);
 		return json_encode($course);
 	}
 	public function addCourse()

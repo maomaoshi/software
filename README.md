@@ -170,3 +170,11 @@
 * StuNum
 	+ 学生人数
 
+### 0x11 老师端未选课程
+#### method get
+
+#### url api/unselected
+
+### return
+* id
+* course_name
