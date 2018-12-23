@@ -11,17 +11,17 @@ class RegistController extends BaseController
 	{
 		$postArr = $this->container->get('request')->getParsedBody();
 		//判断各变量是否存在
-		if (!(isset($postArr['id']) && isset($postArr['name']) && isset($postArr['password']) && isset($postArr['repassword']) && isset($postArr['captcha']) && isset($postArr['teacher_id']))) {
+		if (!(isset($postArr['id']) && isset($postArr['name']) && isset($postArr['password']) && isset($postArr['repassword']) && isset($postArr['teacher_id']) && isset($postArr['teacher_work_id']))) {
 			return $this->json_fail("fail");
 		}
 		//检查是否有非法输入
 		Common\CheckCommon::inputCheck($postArr);
 
-		$_SESSION['captcha'] = 'abcd';	
+		//$_SESSION['captcha'] = 'abcd';	
 
-		if ($_SESSION['captcha'] !== $postArr['captcha']) {
+		/*if ($_SESSION['captcha'] !== $postArr['captcha']) {
 			return $this->json_fail('captcha error');
-		}
+		}*/
 		if ($postArr['password'] !== $postArr['repassword']) {
 			return $this->json_fail("Password inconsistent");
 		}
@@ -44,7 +44,8 @@ class RegistController extends BaseController
 				"stu_id" => $postArr['id'],
 				"name"=>$postArr['name'],
 				"password"=>md5($postArr['password']),
-				"teacher_id"=>$postArr['teacher_id']
+				"teacher_id"=>$postArr['teacher_id'],
+				"teacher_work_id"=>$postArr['teacher_work_id']
 			]);
 			if ($regist->rowCount()) {
 				return $this->json_success('regist success');
@@ -62,15 +63,15 @@ class RegistController extends BaseController
 	{
 		$postArr = $this->container->get('request')->getParsedBody();
 		//判断各变量是否存在
-		if (!(isset($postArr['id']) && isset($postArr['name']) && isset($postArr['password']) && isset($postArr['repassword']) && isset($postArr['captcha']))) {
+		if (!(isset($postArr['id']) && isset($postArr['name']) && isset($postArr['password']) && isset($postArr['repassword']))) {
 			return $this->json_fail("fail");
 		}
 		//检查是否有非法输入
 		Common\CheckCommon::inputCheck($postArr);
-		$_SESSION['captcha'] = 'abcd';
-		if ($_SESSION['captcha'] !== $postArr['captcha']) {
+		//$_SESSION['captcha'] = 'abcd';
+		/*if ($_SESSION['captcha'] !== $postArr['captcha']) {
 			return $this->json_fail('captcha error');
-		}
+		}*/
 		if ($postArr['password'] !== $postArr['repassword']) {
 			return $this->json_fail("Password inconsistent");
 		}
