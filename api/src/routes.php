@@ -12,4 +12,4 @@ $app->post('/addCourse', \Controllers\TeacherController::class. ':addCourse');
 $app->get('/displayStudentCourse', \Controllers\StudentController::class. ':displayStudentCourse');
 $app->post('/updateScore', \Controllers\StudentController::class. ':updateScore');
 $app->get('/showTeacher',\Controllers\RegistController::class. ':showTeacher');
-
+$app->get('/teacherInfor',\Controllers\TeacherController::class. ':teacherInfor');

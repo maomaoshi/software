@@ -159,4 +159,14 @@
 * name
 	+ 姓名
 
+### 0x10 老师端个人中心信息
+
+#### method get
+#### url api/teacherInfor
+
+### return
+* TeaName
+	+ 名字
+* StuNum
+	+ 学生人数
 
