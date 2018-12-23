@@ -11,7 +11,6 @@ class TeacherController extends BaseController
 	
 	public function displayCourse()
 	{
-		$_SESSION['id'] = "1234";
 		$sth = $this->container['db']->pdo->prepare("
 			SELECT
 				id,
@@ -32,6 +31,7 @@ class TeacherController extends BaseController
 		$sth->bindParam(':work_id',$_SESSION['id'],PDO::PARAM_INT);
 		$sth->execute();
 		$course = $sth->fetchAll(PDO::FETCH_ASSOC);
+		var_dump(json_encode($course));
 		return json_encode($course);
 	}
 	public function addCourse()
@@ -56,10 +56,19 @@ class TeacherController extends BaseController
 			}
 		}
 	}
-
-	public function shouStudentScore()
+	public function teacherInfor()
 	{
-		
+		$infor = $this->container['db']->select('teacher',[
+				'name',
+			],[
+				'work_id'=>$_SESSION['id']
+			]);
 	}
+	/*public function showStudentScore()
+	{
+		$sth = $this->container['db']->pdo->prepare('
+				
+			')
+	}*/
 
 }

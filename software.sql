@@ -10,11 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-<<<<<<< HEAD
-Date: 2018-12-23 13:45:28
-=======
-Date: 2018-12-23 14:00:20
->>>>>>> cf3a660cb45a6e1f47e92bf9194df6d250591a26
+Date: 2018-12-23 15:16:29
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -25,7 +21,7 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `courses`;
 CREATE TABLE `courses` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `course_name` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `course_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
@@ -35,16 +31,16 @@ CREATE TABLE `courses` (
 DROP TABLE IF EXISTS `students`;
 CREATE TABLE `students` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `stu_id` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `name` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `password` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `stu_id` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
   `teacher_id` int(11) DEFAULT NULL,
   `teacher_work_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_teacher_id` (`teacher_id`),
   KEY `FK_TEACHER_WORK_ID` (`teacher_work_id`),
   KEY `stu_id` (`stu_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for student_score
@@ -66,12 +62,12 @@ CREATE TABLE `student_score` (
 DROP TABLE IF EXISTS `teachers`;
 CREATE TABLE `teachers` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `work_id` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `name` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `password` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `work_id` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `work_id` (`work_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for teacher_course
