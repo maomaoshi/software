@@ -95,15 +95,19 @@
                                 var storage=window.localStorage;
                                 storage.clear();
                                 //写入教师名字段
+<<<<<<< HEAD
                                 alert(data['TeaName']);
+=======
+>>>>>>> 0c06e48b2ee43a50d88512941faf5847863cf23d
                                 storage["TeaName"]=data['TeaName'];
                                 storage["StuNum"]=data['StuNum'];
 
                             }
                             window.location.href = "./teacher/teacher.html";
                         }
-                        else{window.location.href = "./student/student.html";}
-
+                        else{
+                            window.location.href = "./student/student.html";
+                        }
                     }
                 },
                 error:function (data) {
