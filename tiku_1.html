@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+            <style>
+                .yangshi{text-align:center};
+                </style>
+                <style>
+                        .otime span{display:inline-block;padding: 10px 20px;background-color: green;opacity: 0.5;margin-left: 10px;color:red;}
+                    </style>
+            
+            <script>
+                    var timeCounter = (function() {
+                    var int;
+                    var total = 6000;
+                    return function(elemID) {
+                    obj = document.getElementById(elemID);
+                    var s = (total%60) < 10 ? ('0' + total%60) : total%60;
+                    var h = total/3600 < 10 ? ('0' + parseInt(total/3600)) : parseInt(total/3600);
+                    var m = (total-h*3600)/60 < 10 ? ('0' + parseInt((total-h*3600)/60)) : parseInt((total-h*3600)/60);
+                    obj.innerHTML = h + ' : ' + m + ' : ' + s;
+                    total--;
+                    int = setTimeout("timeCounter('" + elemID + "')", 1000);
+                    if(total < 0) clearTimeout(int);
+                    }
+                    })()
+             </script>
+
+            <div class="yangshi">
+                <h1>试卷1</h1>
+                <h3>考试时间：100分钟</h3>
+                <h3>满分:100</h3>    
+            </div> 
+            <div align="left" style="color:red">
+            <h6>剩余时间：</h6>
+            <h6 id="timeCounter">01 : 40 : 00</h6>
+            </div>
+            
+            <div>
+                <strong>选择题(共20题，每题5分)</strong>
+                <ol>
+                    <li>
+                    <b>列宁说：在大多数情况下，至少在现代的文明国家内，阶级通常是由政党来领导的。这是因为</b>
+                    <p><input name="1" type="radio" value="A">A.阶级性是国家的本质属性</p>
+                    <p><input name="1" type="radio" value="B">B.政党是一定阶级根本利益的集中代表者，并具备领导政权的主观条件</p>
+                    <p><input name="1" type="radio" value="C">C.一个国家的性质通常是与其执政党的阶级属性相一致的</p>
+                    <p><input name="1" type="radio" value="D">D.领导国家政权是政党实现本阶级利益的唯一途径</p>
+                        </li>
+                    <li>
+                        <b>阶级、国家政权和政党之间存在着密切的关系。下列对三者关系认识正确的是</b>
+                        <p><input name="2" type="radio" value="A">任何阶级都有自己的政权，任何政权都是由政党来领导的</p>
+                        <p><input name="2" type="radio" value="B">B.政党通过国家政权实现本阶级的根本利益</p>
+                        <p><input name="2" type="radio" value="C">C.任何政权都是政党领导下的阶级统治的工具</p>
+                        <p><input name="2" type="radio" value="D">D.政党随着阶级、国家产生而产生，必将随着阶级、国家的消亡而消亡</p>
+                        </li>
+                    <li>
+                            <b>法国有一位学者对西方的政党制度作了如下评价：多党制比两党制更民主，因为两党制让选民二者择一，非此即彼，而多党制让选民有更多的选择机会。这一评论</b>
+                            <p><input name="3" type="radio" value="A">A.提示了两党制的实质</p>
+                            <p><input name="3" type="radio" value="B">B.看到了多党制的历史进步性</p>
+                            <p><input name="3" type="radio" value="C">C.对两党制的评价比对多党制的评价准确</p>
+                            <p><input name="3" type="radio" value="D">D.没有认清资本主义政党制度的实质</p>
+                            </li>
+
+                    <li>
+                            <b>只存在一个合法政党，或者其他政党虽然存在，但在法律上不允许它们与执政党竞争政权的体制，这样的政党体制是</b>
+                            <p><input name="4" type="radio" value="A">A.两党制</p>
+                            <p><input name="4" type="radio" value="B">B.多党制</p>
+                            <p><input name="4" type="radio" value="C">C.混合制</p>
+                            <p><input name="4" type="radio" value="D">D.一党制</p>
+                            </li>
+                    <li>
+                        <b>阶级、国家政权和政党之间存在着密切的关系。下列对三者关系认识正确的是</b>
+                        <p><input name="5" type="radio" value="A">任何阶级都有自己的政权，任何政权都是由政党来领导的</p>
+                        <p><input name="5" type="radio" value="B">B.政党通过国家政权实现本阶级的根本利益</p>
+                        <p><input name="5" type="radio" value="C">C.任何政权都是政党领导下的阶级统治的工具</p>
+                        <p><input name="5" type="radio" value="D">D.政党随着阶级、国家产生而产生，必将随着阶级、国家的消亡而消亡</p>
+                        </li>
+                    <li>
+                            <b>法国有一位学者对西方的政党制度作了如下评价：多党制比两党制更民主，因为两党制让选民二者择一，非此即彼，而多党制让选民有更多的选择机会。这一评论</b>
+                            <p><input name="6" type="radio" value="A">A.提示了两党制的实质</p>
+                            <p><input name="6" type="radio" value="B">B.看到了多党制的历史进步性</p>
+                            <p><input name="6" type="radio" value="C">C.对两党制的评价比对多党制的评价准确</p>
+                            <p><input name="6" type="radio" value="D">D.没有认清资本主义政党制度的实质</p>
+                            </li>
+                    <li>
+                            <b>只存在一个合法政党，或者其他政党虽然存在，但在法律上不允许它们与执政党竞争政权的体制，这样的政党体制是</b>
+                            <p><input name="7" type="radio" value="A">A.两党制</p>
+                            <p><input name="7" type="radio" value="B">B.多党制</p>
+                            <p><input name="7" type="radio" value="C">C.混合制</p>
+                            <p><input name="7" type="radio" value="D">D.一党制</p>
+                            </li>
+                    <li>
+                        <b>阶级、国家政权和政党之间存在着密切的关系。下列对三者关系认识正确的是</b>
+                        <p><input name="8" type="radio" value="A">任何阶级都有自己的政权，任何政权都是由政党来领导的</p>
+                        <p><input name="8" type="radio" value="B">B.政党通过国家政权实现本阶级的根本利益</p>
+                        <p><input name="8" type="radio" value="C">C.任何政权都是政党领导下的阶级统治的工具</p>
+                        <p><input name="8" type="radio" value="D">D.政党随着阶级、国家产生而产生，必将随着阶级、国家的消亡而消亡</p>
+                        </li>
+
+                    <li>
+                            <b>只存在一个合法政党，或者其他政党虽然存在，但在法律上不允许它们与执政党竞争政权的体制，这样的政党体制是</b>
+                            <p><input name="9" type="radio" value="A">A.两党制</p>
+                            <p><input name="9" type="radio" value="B">B.多党制</p>
+                            <p><input name="9" type="radio" value="C">C.混合制</p>
+                            <p><input name="9" type="radio" value="D">D.一党制</p>
+                            </li>
+                    <li>
+                        <b>阶级、国家政权和政党之间存在着密切的关系。下列对三者关系认识正确的是</b>
+                        <p><input name="10" type="radio" value="A">任何阶级都有自己的政权，任何政权都是由政党来领导的</p>
+                        <p><input name="10" type="radio" value="B">B.政党通过国家政权实现本阶级的根本利益</p>
+                        <p><input name="10" type="radio" value="C">C.任何政权都是政党领导下的阶级统治的工具</p>
+                        <p><input name="10" type="radio" value="D">D.政党随着阶级、国家产生而产生，必将随着阶级、国家的消亡而消亡</p>
+                        </li>
+                    <li>
+                    <b>列宁说：在大多数情况下，至少在现代的文明国家内，阶级通常是由政党来领导的。这是因为</b>
+                    <p><input name="11" type="radio" value="A">A.阶级性是国家的本质属性</p>
+                    <p><input name="11" type="radio" value="B">B.政党是一定阶级根本利益的集中代表者，并具备领导政权的主观条件</p>
+                    <p><input name="11" type="radio" value="C">C.一个国家的性质通常是与其执政党的阶级属性相一致的</p>
+                    <p><input name="11" type="radio" value="D">D.领导国家政权是政党实现本阶级利益的唯一途径</p>
+                        </li>
+                    <li>
+                        <b>阶级、国家政权和政党之间存在着密切的关系。下列对三者关系认识正确的是</b>
+                        <p><input name="12" type="radio" value="A">任何阶级都有自己的政权，任何政权都是由政党来领导的</p>
+                        <p><input name="12" type="radio" value="B">B.政党通过国家政权实现本阶级的根本利益</p>
+                        <p><input name="12" type="radio" value="C">C.任何政权都是政党领导下的阶级统治的工具</p>
+                        <p><input name="12" type="radio" value="D">D.政党随着阶级、国家产生而产生，必将随着阶级、国家的消亡而消亡</p>
+                        </li>
+                    <li>
+                            <b>法国有一位学者对西方的政党制度作了如下评价：多党制比两党制更民主，因为两党制让选民二者择一，非此即彼，而多党制让选民有更多的选择机会。这一评论</b>
+                            <p><input name="13" type="radio" value="A">A.提示了两党制的实质</p>
+                            <p><input name="13" type="radio" value="B">B.看到了多党制的历史进步性</p>
+                            <p><input name="13" type="radio" value="C">C.对两党制的评价比对多党制的评价准确</p>
+                            <p><input name="13" type="radio" value="D">D.没有认清资本主义政党制度的实质</p>
+                            </li>
+
+                    <li>
+                            <b>只存在一个合法政党，或者其他政党虽然存在，但在法律上不允许它们与执政党竞争政权的体制，这样的政党体制是</b>
+                            <p><input name="14" type="radio" value="A">A.两党制</p>
+                            <p><input name="14" type="radio" value="B">B.多党制</p>
+                            <p><input name="14" type="radio" value="C">C.混合制</p>
+                            <p><input name="14" type="radio" value="D">D.一党制</p>
+                            </li>
+                    <li>
+                        <b>阶级、国家政权和政党之间存在着密切的关系。下列对三者关系认识正确的是</b>
+                        <p><input name="15" type="radio" value="A">任何阶级都有自己的政权，任何政权都是由政党来领导的</p>
+                        <p><input name="15" type="radio" value="B">B.政党通过国家政权实现本阶级的根本利益</p>
+                        <p><input name="15" type="radio" value="C">C.任何政权都是政党领导下的阶级统治的工具</p>
+                        <p><input name="15" type="radio" value="D">D.政党随着阶级、国家产生而产生，必将随着阶级、国家的消亡而消亡</p>
+                        </li>
+                    <li>
+                            <b>法国有一位学者对西方的政党制度作了如下评价：多党制比两党制更民主，因为两党制让选民二者择一，非此即彼，而多党制让选民有更多的选择机会。这一评论</b>
+                            <p><input name="16" type="radio" value="A">A.提示了两党制的实质</p>
+                            <p><input name="16" type="radio" value="B">B.看到了多党制的历史进步性</p>
+                            <p><input name="16" type="radio" value="C">C.对两党制的评价比对多党制的评价准确</p>
+                            <p><input name="16" type="radio" value="D">D.没有认清资本主义政党制度的实质</p>
+                            </li>
+                    <li>
+                            <b>只存在一个合法政党，或者其他政党虽然存在，但在法律上不允许它们与执政党竞争政权的体制，这样的政党体制是</b>
+                            <p><input name="17" type="radio" value="A">A.两党制</p>
+                            <p><input name="17" type="radio" value="B">B.多党制</p>
+                            <p><input name="17" type="radio" value="C">C.混合制</p>
+                            <p><input name="17" type="radio" value="D">D.一党制</p>
+                            </li>
+                    <li>
+                        <b>阶级、国家政权和政党之间存在着密切的关系。下列对三者关系认识正确的是</b>
+                        <p><input name="18" type="radio" value="A">任何阶级都有自己的政权，任何政权都是由政党来领导的</p>
+                        <p><input name="18" type="radio" value="B">B.政党通过国家政权实现本阶级的根本利益</p>
+                        <p><input name="18" type="radio" value="C">C.任何政权都是政党领导下的阶级统治的工具</p>
+                        <p><input name="18" type="radio" value="D">D.政党随着阶级、国家产生而产生，必将随着阶级、国家的消亡而消亡</p>
+                        </li>
+
+                    <li>
+                            <b>只存在一个合法政党，或者其他政党虽然存在，但在法律上不允许它们与执政党竞争政权的体制，这样的政党体制是</b>
+                            <p><input name="19" type="radio" value="A">A.两党制</p>
+                            <p><input name="19" type="radio" value="B">B.多党制</p>
+                            <p><input name="19" type="radio" value="C">C.混合制</p>
+                            <p><input name="19" type="radio" value="D">D.一党制</p>
+                            </li>
+                    <li>
+                        <b>阶级、国家政权和政党之间存在着密切的关系。下列对三者关系认识正确的是</b>
+                        <p><input name="20" type="radio" value="A">任何阶级都有自己的政权，任何政权都是由政党来领导的</p>
+                        <p><input name="20" type="radio" value="B">B.政党通过国家政权实现本阶级的根本利益</p>
+                        <p><input name="20" type="radio" value="C">C.任何政权都是政党领导下的阶级统治的工具</p>
+                        <p><input name="20" type="radio" value="D">D.政党随着阶级、国家产生而产生，必将随着阶级、国家的消亡而消亡</p>
+                        </li>
+
+
+                    </ol>
+                </div>
+                <div align="center"><button onclick="check()">提交</button></div>
+
+        </head>
+    <body onload="timeCounter('timeCounter')">
+    <script>
+    var a1 = document.getElementsByName("1");
+    var a2 = document.getElementsByName("2");
+    var a3 = document.getElementsByName("3");
+    var a4 = document.getElementsByName("4");
+    var a5 = document.getElementsByName("5");
+    var a6 = document.getElementsByName("6");
+    var a7 = document.getElementsByName("7");
+    var a8 = document.getElementsByName("8");
+    var a9 = document.getElementsByName("9");
+    var a10 = document.getElementsByName("10");
+    var a11 = document.getElementsByName("11");
+    var a12 = document.getElementsByName("12");
+    var a13 = document.getElementsByName("13");
+    var a14 = document.getElementsByName("14");
+    var a15 = document.getElementsByName("15");
+    var a16 = document.getElementsByName("16");
+    var a17 = document.getElementsByName("17");
+    var a18 = document.getElementsByName("18");
+    var a19 = document.getElementsByName("19");
+    var a20 = document.getElementsByName("20");
+    var score=0;
+    function check()
+{
+    if(a1[0].checked) score+=5;
+    if(a2[0].checked) score+=5;
+    if(a3[0].checked) score+=5;
+    if(a4[0].checked) score+=5;
+    if(a5[0].checked) score+=5;
+    if(a6[0].checked) score+=5;
+    if(a7[0].checked) score+=5;
+    if(a8[0].checked) score+=5;
+    if(a9[0].checked) score+=5;
+    if(a10[0].checked) score+=5;
+    if(a11[0].checked) score+=5;
+    if(a12[0].checked) score+=5;
+    if(a13[0].checked) score+=5;
+    if(a14[0].checked) score+=5;
+    if(a15[0].checked) score+=5;
+    if(a16[0].checked) score+=5;
+    if(a17[0].checked) score+=5;
+    if(a18[0].checked) score+=5;
+    if(a19[0].checked) score+=5;
+    if(a20[0].checked) score+=5;
+    alert("Final score is:"+score);
+}    
+    </script>
+    
+    </body>  
+    </html>

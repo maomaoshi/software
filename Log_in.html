@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>大学生智能化考试登录</title>
+<link href="./Wopop_files/style_log.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="./Wopop_files/style.css">
+<link rel="stylesheet" type="text/css" href="./Wopop_files/userpanel.css">
+<link rel="stylesheet" type="text/css" href="./Wopop_files/jquery.ui.all.css">
+
+</head>
+<script language="JavaScript" src="js/other.js">
+</script>
+<body class="login" mycollectionplug="bind">
+<div class="login_m">
+
+<h1 align="center">登 录</h1>
+<div class="login_boder">
+
+<div class="login_padding" id="login_model">
+<!--表单，打包：身份选择、学号、姓名-->
+<form id="log_in_form">
+<div class="rem_sub_l">
+      <select name="moreselAge" id="choose">
+          <option value="teacher">teacher</option>
+          <option value="student">student</option>>
+        </select>
+   </div>
+   </br>
+  <h2>ID</h2>
+  <label>
+    <input type="text" class="txt_input txt_input2" placeholder="Enter yourID" id="userID" name="ID" required> </b>
+  </label>
+
+  <h2>Password</h2>
+  <label>
+    <input type="password" class="txt_input txt_input2" placeholder="Enter Password" id="userPwd" name="password" required></b>
+  </label>
+
+    <h2>Verification code</h2>
+    <label>
+    <input type="text" class="txt_input txt_input2" placeholder="Enter here" id="testma" required></b>
+    </label>
+    <input type = "button" id="code" value="zx88" onclick="createCode()"/>
+
+  <div class="rem_sub">
+
+    <label>
+      <input type="button"  class="sub_button" name="button" id="button" value="LOG-IN" style="opacity: 0.7;" onclick="Login()">
+    </label>
+  </div>
+</div>
+
+
+<!--login_padding  Sign up end-->
+</div><!--login_boder end-->
+
+</div><!--login_m end-->
+ <br> <br>
+</body>
+
+
+<script type="text/javascript" src="./js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="./js/jquery.min.js"></script>
+<script type="text/javascript" src="./js/jquery.js"></script>
+<script type="text/javascript">
+
+    function Login(){
+        var role = document.getElementById("choose");
+        var index = role.selectedIndex;
+        var id = document.getElementById("userID").value.trim();
+        var pwd = document.getElementById("userPwd").value.trim();
+        var urlstr = "";
+        if(index == 0){
+            urlstr="api/teacherLogin";
+        }
+        else{
+
+            urlstr="api/studentLogin";
+        }
+        $.ajax({
+                type: "POST",
+                url: urlstr,
+                date:{"id":id,"password":pwd}
+                dataType : "json",
+                success: function(data){ //JQuery版本的升级，JQuery的ajax方法发生了变化，ajax的sucess的回调值直接将json解析，造成了这种错误。
+                    if(data['status']=="fail"){
+                        alert("登陆失败"+data['message']);
+                    }
+                    else{
+                        alert("登陆成功");
+                        if(index==0){window.location.href = "teacher.html";}
+                        else{window.location.href = "student.html";}
+
+                    }
+                },
+                error:function (data) {
+                    alert("connect Error,please contact Manager");
+                }
+            });
+    }
+
+</script>
+
+</html>
+
+
