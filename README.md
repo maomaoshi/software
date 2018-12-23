@@ -75,7 +75,7 @@
 * teacherName
 	+ 老师姓名
 
-### 老师注册
+### 0x04 老师注册
 #### method post
 #### url api/teacherRegist
 
@@ -135,5 +135,17 @@
 	+ 课程id
 * score
 	+ 分数
+
+### 0x09 注册显示老师
+
+#### method get
+#### url api/showTeacher
+
+### return 
+* id
+* work_id
+	+ 工号
+* name
+	+ 姓名
 
 

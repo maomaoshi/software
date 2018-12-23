@@ -11,7 +11,7 @@ class RegistController extends BaseController
 	{
 		$postArr = $this->container->get('request')->getParsedBody();
 		//判断各变量是否存在
-		if (!(isset($postArr['id']) && isset($postArr['name']) && isset($postArr['password']) && isset($postArr['repassword']) && isset($postArr['captcha']) && isset($postArr['teacherName']))) {
+		if (!(isset($postArr['id']) && isset($postArr['name']) && isset($postArr['password']) && isset($postArr['repassword']) && isset($postArr['captcha']) && isset($postArr['teacher_id']))) {
 			return $this->json_fail("fail");
 		}
 		//检查是否有非法输入
@@ -30,12 +30,12 @@ class RegistController extends BaseController
 		if (!$result) {
 			return $this->json_fail("Password doesn't conform to the rules");
 		}*/
-		$teacher_id = $this->container['db']->select('teachers','id',[
+		/*$teacher_id = $this->container['db']->select('teachers','id',[
 				'name'=>$postArr['teacherName']
 			]);
 		if (!$teacher_id) {
 			return $this->json_fail('The teacher is not exist');
-		}
+		}*/
 		$result = $this->container['db']->has('students',[
 			'stu_id' => $postArr['id']
 			]);
@@ -44,7 +44,7 @@ class RegistController extends BaseController
 				"stu_id" => $postArr['id'],
 				"name"=>$postArr['name'],
 				"password"=>md5($postArr['password']),
-				"teacher_id"=>$teacher_id[0]
+				"teacher_id"=>$postArr['teacher_id']
 			]);
 			if ($regist->rowCount()) {
 				return $this->json_success('regist success');
@@ -96,5 +96,16 @@ class RegistController extends BaseController
 		else{
 			return $this->json_fail('the teacher has registed');
 		}
+	}
+
+	public function showTeacher()
+	{
+		
+		$result = $this->container['db']->select('teachers',[
+				'id',
+				'work_id',
+				'name'
+			]);
+		return json_encode($result);
 	}
 }
