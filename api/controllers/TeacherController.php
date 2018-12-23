@@ -105,8 +105,9 @@ class TeacherController extends BaseController
 				SELECT
 					students.stu_id,
 					students.`name`,
-					GROUP_CONCAT(courses.course_name),
-					GROUP_CONCAT(student_score.score)
+					COUNT(courses.course_name) AS courseNum,
+					GROUP_CONCAT(courses.course_name) AS courseName,
+					GROUP_CONCAT(student_score.score) AS courseScore
 				FROM
 					students 
 				INNER JOIN teacher_course ON teacher_course.teacher_work_id = :work_id
@@ -120,9 +121,10 @@ class TeacherController extends BaseController
 		$sth->execute();
 		$table = $sth->fetchAll(PDO::FETCH_ASSOC);
 		var_dump($table);
-		foreach ($table as $key => $value) {
-			# code...
-		}
+		/*foreach ($table as $key => $value) {
+			$courseArr = explode(',', $value['courseName']);
+			$scoreArr = explode(',', $value['courseScore']);
+		}*/
 	}
 
 }

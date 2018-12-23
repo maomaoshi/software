@@ -51,7 +51,21 @@ class LoginController extends BaseController
 		]);
 		if($result){
 			Common\SessionCommon::setSession($postArr['id']);
-			return $this->json_success('login succsess');
+			$sth = $this->container['db']->pdo->prepare('
+				SELECT
+					teachers.`name` AS TeaName,
+					COUNT(students.id) AS StuNum
+				FROM
+					teachers
+				INNER JOIN students ON teachers.work_id = :work_id
+				AND students.teacher_work_id = teachers.work_id
+				GROUP BY teachers.`name`
+			');
+			$sth->bindParam(':work_id',$_SESSION['id'],PDO::PARAM_INT);
+			$sth->execute();
+			$info = $sth->fetchAll(PDO::FETCH_ASSOC)[0];
+			$info['status'] = "success";
+			return json_encode($info);
 		}
 		else{
 			return $this->json_fail('work ID or password is error');
