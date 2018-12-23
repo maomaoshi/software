@@ -289,38 +289,12 @@
     <section id="main-content">
       <section class="wrapper site-min-height">
         <div class="row mt mb">
-          <div class="col-lg-12">
+          <div class="col-lg-12" id="Course">
             <h3><i class="fa fa-angle-right"></i>正在授课的课程</h3>
             <br>
-            <div class="col-lg-4 col-md-4 col-sm-12">
-              <div class="dmbox">
-                <div class="service-icon">
-                  <a class="" href="faq.html#"><i class="dm-icon fa fa-question fa-3x"></i></a>
-                </div>
-                <h4>课程1</h4>
-                <p>本课程是信息安全专业第5学期开设的专业课程。</p>
-              </div>
-            </div>
-            <!-- end dmbox -->
-            <div class="col-lg-4 col-md-4 col-sm-12">
-              <div class="dmbox">
-                <div class="service-icon">
-                  <a class="" href="faq.html#"><i class="dm-icon fa fa-envelope-o fa-3x"></i></a>
-                </div>
-                <h4>课程2</h4>
-                <p>本课程是软件工程专业第5学期开设的专业课程。</p>
-              </div>
-            </div>
-            <!-- end dmbox -->
-            <div class="col-lg-4 col-md-4 col-sm-12">
-              <div class="dmbox">
-                <div class="service-icon">
-                  <a class="" href="faq.html#"><i class="dm-icon fa fa-random fa-3x"></i></a>
-                </div>
-                <h4>课程3</h4>
-                <p>本课程是计算机科学与技术专业第5学期开设的专业课程。</p>
-              </div>
-            </div>
+
+
+
             <!-- end dmbox -->
           </div>
           <!--  /col-lg-12 -->
@@ -363,7 +337,40 @@
   <!--common script for all pages-->
   <script src="lib/common-scripts.js"></script>
   <!--script for this page-->
-
+  <script type="text/javascript">
+  $(document).ready(function() {
+    $.ajax({
+        type: "GET",
+        url: "../api/displayCourse",
+        success: function(data){
+            //alert(data);
+            var response = JSON.parse(data);
+            if(response.length==0){
+                document.getElementById('Course').innerHTML="<p>未选择过授课课程</p>";
+                return ;
+            }
+            var dh = "";
+            for(var i=0;i<response.length;i++) {
+                var nowcourse = response[i]["course_name"];
+                var strNum = Math.ceil(Math.random()*10);
+                dh += '<div class="col-lg-4 col-md-4 col-sm-12">';
+                dh += '<div class="dmbox">';
+                dh += '<div class="service-icon">';
+                dh += '<a class="" href="faq.html#"><i class="dm-icon fa fa-random fa-3x"></i></a>';
+                dh +="</div>";
+                dh += '<h4>'+nowcourse+'</h4>';
+                dh += '<p>本课程是计算机科学与技术专业第'+strNum+'学期开设的专业课程。</p>';
+                dh += "</div>";
+                dh += "</div>";
+            }
+				document.getElementById('Course').innerHTML=dh;
+        },
+        error:function(data){
+            alert("Connect Error");
+        }
+    });
+    });
+  </script>
 </body>
 
 </html>

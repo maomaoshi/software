@@ -112,23 +112,23 @@
         var index = role.selectedIndex;
         var role_name = document.getElementById("name").value.trim();
         var teaid = document.getElementById("teacherID").value.trim();
-        var stuid = document.getElementById("userID").value.trim();
+        var id = document.getElementById("userID").value.trim();
         var pwd1 = document.getElementById("userpwd1").value.trim();
         var pwd2 = document.getElementById("userpwd2").value.trim();
         var urlstr = "";
         var postdata;
         if(index == 0){
-            urlstr="api/studentRegist";
-            postdata = {"id":stuid,"name":role_name,"password":pwd1,"repassword":pwd2,"teacherId":teaid};
+            urlstr="api/teacherRegist";
+            postdata = {"id":id,"name":role_name,"password":pwd1,"repassword":pwd2};
         }
         else{
-            urlstr="api/teacherRegist";
-            postdata = {"id":teaid,"name":role_name,"password":pwd1,"repassword":pwd2};
+            urlstr="api/studentRegist";
+            postdata = {"id":id,"name":role_name,"password":pwd1,"repassword":pwd2,"teacherId":teaid};
         }
         $.ajax({
                 type: "POST",
                 url: urlstr,
-                date:postdata,
+                data: postdata,
                 dataType : "json",
                 success: function(data){ //JQuery版本的升级，JQuery的ajax方法发生了变化，ajax的sucess的回调值直接将json解析，造成了这种错误。
                     if(data['status']=="fail"){

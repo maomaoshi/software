@@ -45,7 +45,7 @@
   <div class="rem_sub">
 
     <label>
-      <input type="button"  class="sub_button" name="button" id="button" value="LOG-IN" style="opacity: 0.7;" onclick="Login()">
+      <input type="button" class="sub_button" name="button" id="button" value="LOG-IN" style="opacity: 0.7;" onclick="Login()"></b>
     </label>
   </div>
 </div>
@@ -74,13 +74,12 @@
             urlstr="api/teacherLogin";
         }
         else{
-
             urlstr="api/studentLogin";
         }
         $.ajax({
                 type: "POST",
                 url: urlstr,
-                date:{"id":id,"password":pwd}
+                data:{"id":id,"password":pwd},
                 dataType : "json",
                 success: function(data){ //JQuery版本的升级，JQuery的ajax方法发生了变化，ajax的sucess的回调值直接将json解析，造成了这种错误。
                     if(data['status']=="fail"){
@@ -88,8 +87,21 @@
                     }
                     else{
                         alert("登陆成功");
-                        if(index==0){window.location.href = "teacher.html";}
-                        else{window.location.href = "student.html";}
+                        if(index == 0){
+                            if(!window.localStorage){
+                                alert("浏览器支持localstorage");
+                            }
+                            else {
+                                var storage=window.localStorage;
+                                storage.clear();
+                                //写入教师名字段
+                                storage["TeaName"]="Mr.Hu";
+                                storage["StuNum"]="153";
+
+                            }
+                            window.location.href = "./teacher/teacher.html";
+                        }
+                        else{window.location.href = "./student/student.html";}
 
                     }
                 },
