@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2018-12-19 22:22:14
+Date: 2018-12-23 13:45:28
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -23,7 +23,7 @@ CREATE TABLE `courses` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `course_name` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for students
@@ -40,7 +40,7 @@ CREATE TABLE `students` (
   KEY `FK_teacher_id` (`teacher_id`),
   KEY `FK_TEACHER_WORK_ID` (`teacher_work_id`),
   KEY `stu_id` (`stu_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for student_score
@@ -54,7 +54,7 @@ CREATE TABLE `student_score` (
   PRIMARY KEY (`id`),
   KEY `FK_STU_ID` (`stu_id`),
   KEY `FK_COURSE_ID` (`course_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for teachers
@@ -67,7 +67,7 @@ CREATE TABLE `teachers` (
   `password` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `work_id` (`work_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for teacher_course
@@ -81,4 +81,4 @@ CREATE TABLE `teacher_course` (
   PRIMARY KEY (`id`),
   KEY `FK_COURSE_ID` (`course_id`),
   KEY `FK_WORK_ID` (`teacher_work_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
