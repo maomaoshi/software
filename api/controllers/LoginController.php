@@ -1,7 +1,7 @@
 <?php
 namespace Controllers;
 use Common;
-
+use \PDO;
 /**
 * 
 */
@@ -57,7 +57,7 @@ class LoginController extends BaseController
 					COUNT(students.id) AS StuNum
 				FROM
 					teachers
-				INNER JOIN students ON teachers.work_id = :work_id
+				LEFT JOIN students ON teachers.work_id = :work_id
 				AND students.teacher_work_id = teachers.work_id
 				GROUP BY teachers.`name`
 			');
@@ -65,6 +65,7 @@ class LoginController extends BaseController
 			$sth->execute();
 			$info = $sth->fetchAll(PDO::FETCH_ASSOC)[0];
 			$info['status'] = "success";
+			var_dump($info);
 			return json_encode($info);
 		}
 		else{

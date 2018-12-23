@@ -95,8 +95,9 @@
                                 var storage=window.localStorage;
                                 storage.clear();
                                 //写入教师名字段
-                                storage["TeaName"]="Mr.Hu";
-                                storage["StuNum"]="153";
+                                alert(data['TeaName']);
+                                storage["TeaName"]=data['TeaName'];
+                                storage["StuNum"]=data['StuNum'];
 
                             }
                             window.location.href = "./teacher/teacher.html";

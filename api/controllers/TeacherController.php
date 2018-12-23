@@ -100,14 +100,13 @@ class TeacherController extends BaseController
 	}
 	public function showStudentScore()
 	{
-		$_SESSION['id'] = "1234567";
-		$sth = $this->container['db']->pdo->prepare('
+		$sth = $this->container['db']->pdo->prepare("
 				SELECT
 					students.stu_id,
 					students.`name`,
 					COUNT(courses.course_name) AS courseNum,
 					GROUP_CONCAT(courses.course_name) AS courseName,
-					GROUP_CONCAT(student_score.score) AS courseScore
+					GROUP_CONCAT(IFNULL(student_score.score,'-')) As courseScore
 				FROM
 					students 
 				INNER JOIN teacher_course ON teacher_course.teacher_work_id = :work_id
@@ -116,15 +115,26 @@ class TeacherController extends BaseController
 				LEFT JOIN student_score ON student_score.stu_id = students.stu_id
 				AND student_score.course_id = teacher_course.course_id
 				GROUP BY students.stu_id, students.`name`
-			');
+			");
 		$sth->bindParam(':work_id',$_SESSION['id'],PDO::PARAM_INT);
 		$sth->execute();
-		$table = $sth->fetchAll(PDO::FETCH_ASSOC);
-		var_dump($table);
-		/*foreach ($table as $key => $value) {
+		$tmpTable = $sth->fetchAll(PDO::FETCH_ASSOC);
+		var_dump($tmpTable);
+		$scoreTable = array();
+		foreach ($tmpTable as $key => $value) {
 			$courseArr = explode(',', $value['courseName']);
 			$scoreArr = explode(',', $value['courseScore']);
-		}*/
+			$scoreTable[$key]['stu_id'] = $value['stu_id'];
+			$scoreTable[$key]['name'] = $value['name'];
+			$scoreTable[$key]['courseNum'] = $value['courseNum'];
+			$scoreTable[$key]['courses'] = array();
+			$scoreTable[$key]['score'] = array();
+			for ($i=0; $i < $value['courseNum']; $i++) { 
+				$scoreTable[$key]['courses'][$i] = $courseArr[$i];  
+				$scoreTable[$key]['score'][$i] = $scoreArr[$i];
+			}
+		}
+		return json_encode($scoreTable);
 	}
 
 }
