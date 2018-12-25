@@ -1,62 +1,65 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-<title>大学生智能化考试注册</title>
-<!-- Custom Theme files -->
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
-<!-- Custom Theme files -->
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
-<meta name="keywords" content="Login form web template, Sign up Web Templates, Flat Web Templates, Login signup Responsive web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
-<!--Google Fonts-->
-<link href='http://fonts.useso.com/css?family=Roboto:500,900italic,900,400italic,100,700italic,300,700,500italic,100italic,300italic,400' rel='stylesheet' type='text/css'>
-<link href='http://fonts.useso.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-<!--Google Fonts-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>大学生智能化考试登录</title>
+<link href="./Wopop_files/style_log.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="./Wopop_files/style.css">
+<link rel="stylesheet" type="text/css" href="./Wopop_files/userpanel.css">
+<link rel="stylesheet" type="text/css" href="./Wopop_files/jquery.ui.all.css">
+
 </head>
-<body>
-<div class="login">
-	<h2>登  陆</h2>
-	<div class="login-top">
-		<form id="Log_in_form">
+<!--<script language="JavaScript" src="js/other.js">-->
+</script>
+<body class="login" mycollectionplug="bind">
+<div class="login_m">
 
-		<select name="moreselAge" id="choose">
+<h1 align="center">登 录</h1>
+<div class="login_boder">
+
+<div class="login_padding" id="login_model">
+<!--表单，打包：身份选择、学号、姓名-->
+<form id="log_in_form">
+<div class="rem_sub_l">
+      <select name="moreselAge" id="choose">
           <option value="teacher">teacher</option>
-          <option value="student">student</option>
+          <option value="student">student</option>>
         </select>
+   </div>
+   </br>
+  <h2>ID</h2>
+  <label>
+    <input type="text" class="txt_input txt_input2" placeholder="Enter yourID" id="userID" name="ID" required> </b>
+  </label>
 
-        </br>
-		</br>
+  <h2>Password</h2>
+  <label>
+    <input type="password" class="txt_input txt_input2" placeholder="Enter Password" id="userPwd" name="password" required></b>
+  </label>
 
-            <label>
-            <input type="text" placeholder="Enter yourID" id="userID" required> </b>
-          </label>
+    <h2>Verification code</h2>
+    <label>
+    <input type="text" class="txt_input txt_input2" placeholder="Enter here" id="testma" required></b>
+    </label>
+    <input type = "button" id="code" value="zx88" onclick="createCode()"/>
 
-          <label>
-          <input type="password" placeholder="Enter Password" id="userPwd" required></b>
-           </label>
+  <div class="rem_sub">
 
-		   <div id="yzm">
-             <label>
-                <input type="text" placeholder="Enter Verification code" id="testma" required></b>
-           </label>
-             <input type = "button" id="code" value="QWt6" onclick="createCode()"/>
-           </div>
+    <label>
+      <input type="button" class="sub_button" name="button" id="button" value="LOG-IN" style="opacity: 0.7;" onclick="Login()"></b>
+    </label>
+  </div>
+</div>
 
-	    </form>
-	    <div class="forgot">
-	    	<a href="#">forgot Password</a>
-	    	<input type="submit" value="Log_in" onclick="Login()">
-	    </div>
-	</div>
-	<div class="login-bottom">
-		<h3>WELCOME &nbsp;<a href="#">TO</a>&nbsp BACK</h3>
-	</div>
-</div>	
 
-<script type="text/javascript" src="./js/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="./js/jquery.min.js"></script>
-<script type="text/javascript" src="./js/jquery.js"></script>
+<!--login_padding  Sign up end-->
+</div><!--login_boder end-->
+
+</div><!--login_m end-->
+ <br> <br>
+</body>
+
+
+
 <script type="text/javascript">
 
 var code;
@@ -70,7 +73,7 @@ function createCode(){
          code += random[index];        
     }
     codeV.value = code;     
-};
+}
  
 
 function check_loginForm(){    //检查登录表单
@@ -85,10 +88,10 @@ function check_loginForm(){    //检查登录表单
         alert("ok!");
         return true;
     }
-};
+}
 
     function Login(){
-        if(!check_loginForm())  return false;
+       if(check_loginForm()==false) return false;
         var role = document.getElementById("choose");
         var index = role.selectedIndex;
         var id = document.getElementById("userID").value.trim();
@@ -107,7 +110,6 @@ function check_loginForm(){    //检查登录表单
                 dataType : "json",
                 success: function(data){ //JQuery版本的升级，JQuery的ajax方法发生了变化，ajax的sucess的回调值直接将json解析，造成了这种错误。
                     if(data['status']=="fail"){
-                        createCode();
                         alert("登陆失败"+data['message']);
                     }
                     else{
@@ -135,9 +137,13 @@ function check_loginForm(){    //检查登录表单
                     alert("connect Error,please contact Manager");
                 }
             });
-    };
+    }
 
 </script>
 
-</body>
+<script type="text/javascript" src="./js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="./js/jquery.min.js"></script>
+<script type="text/javascript" src="./js/jquery.js"></script>
 </html>
+
+

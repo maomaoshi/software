@@ -45,15 +45,16 @@
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Welcome Back，胡峰松</h4>
+                <h4 class="modal-title">Welcome Back</h4>
+                <h4 class="modal-title" id="TeaName1"></h4>
               </div>
               <div class="modal-body">
-                <p class="centered"><img class="img-circle" width="80" src="img/ui-sam.jpg"></p>
+                <p class="centered"><img class="img-circle" width="80" src="img/头像.jpg"></p>
                 <input type="password" name="password" placeholder="Password" autocomplete="off" class="form-control placeholder-no-fix">
               </div>
               <div class="modal-footer centered">
                 <button data-dismiss="modal" class="btn btn-theme04" type="button">Cancel</button>
-                <button class="btn btn-theme03" type="button">Login</button>
+                <button class="btn btn-theme03" type="button" onclick="re_login()">Login</button>
               </div>
             </div>
           </div>
@@ -98,6 +99,44 @@
       return i;
     }
   </script>
+
+<script type="application/javascript">
+  $(document).ready(function() {
+      $("#TeaName1").text(localStorage.getItem("TeaName"));
+  });
+  </script>
+<script type="text/javascript">
+  history.pushState(null, null, document.URL);
+        window.addEventListener('popstate', function () {
+            history.pushState(null, null, document.URL);
+  });
+
+  function re_login()
+{
+    var id = document.getElementById("TeaName1").value.trim();
+    var pwd = document.getElementsByName("password").value.trim();
+    var urlstr="api/teacherLogin";
+    $.ajax({
+                type: "POST",
+                url: urlstr,
+                data:{"id":id,"password":pwd},
+                dataType : "json",
+                success: function(data){ //JQuery版本的升级，JQuery的ajax方法发生了变化，ajax的sucess的回调值直接将json解析，造成了这种错误。
+                    if(data['status']=="fail"){
+                        alert("解锁失败！");
+                    }
+                    else{
+                        alert("解锁成功");
+                        window.location.href = "teacher.html";
+                    }
+                },
+                error:function (data) {
+                    alert("错误！");
+                }
+      });
+}  
+</script>
+
 </body>
 
 </html>

@@ -15,7 +15,7 @@ function createCode(){     //用来生成验证码的函数
     codeV.value = code;      //通过codeV设置id='code'的value值就是生成的验证码
 }
  
-function check_signFrom(){    //检查注册表单
+function check_signForm(){    //检查注册表单
     var yzm = document.getElementById('testma').value.toUpperCase();  
     var myID=getElementById("userID").value;
     var myname=getElementById("username").value;
@@ -25,7 +25,7 @@ function check_signFrom(){    //检查注册表单
     var index=mychose.selectedIndex;
     if(yzm!=code){
         alert('the identifying code is wrong, please input once again!');
-        oValue = ' ';
+        yzm = ' ';
         createCode(); 
         return false;
     }
@@ -47,26 +47,16 @@ function check_signFrom(){    //检查注册表单
     
 }
 
-function check_signFrom(){    //检查登录表单
+function check_loginForm(){    //检查登录表单
+    alert("wrong------");
     var yzm = document.getElementById('testma').value.toUpperCase();  
-    var myID=getElementById("userID").value;
-    var mypwd=getElementById("userpwd").value;
-    var mychose=getElementById("chose");
-    var index=mychose.selectedIndex;
     if(yzm!=code){
         alert('the identifying code is wrong, please input once again!');
-        oValue = ' ';
+        yzm = ' ';
         createCode(); 
         return false;
     }
     else{
-        /*
-        if(mychose.options[index].value=="teacher") {
-
-        }
-        else if(mychose.options[index].value=="student"){
-
-        }*/
         return true;
     }
 }
