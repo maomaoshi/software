@@ -65,7 +65,7 @@ class LoginController extends BaseController
 			$sth->execute();
 			$info = $sth->fetchAll(PDO::FETCH_ASSOC)[0];
 			$info['status'] = "success";
-			var_dump($info);
+			//var_dump($info);
 			return json_encode($info);
 		}
 		else{

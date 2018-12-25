@@ -92,7 +92,7 @@
 	+ 确认密码
 
 
-### 0x04老师端显示已选课程
+### 0x04老师端显示可选课程
 #### method get
 #### url api/displayCourse
 
@@ -178,36 +178,3 @@
 ### return
 * id
 * course_name
-
-### 0X12 老师端显示学生成绩
-
-#### method get
-#### url api/showStudentScore
-
-### return
-* stu_id
-	+ 学号
-* name
-	+ 姓名
-* courseNum
-	+ 课程数
-* courses
-	+ 课程名（数组）
-* score
-	+ 课程分数（数组）
-
-```
-[{
-	"stu_id": "201608060127",
-	"name": "顾文洁",
-	"courseNum": "2",
-	"courses": ["课程1", "课程2"],
-	"score": ["-", "95"]
-}, {
-	"stu_id": "201608060128",
-	"name": "guwenjie",
-	"courseNum": "2",
-	"courses": ["课程1", "课程2"],
-	"score": ["-", "-"]
-}]
-```
