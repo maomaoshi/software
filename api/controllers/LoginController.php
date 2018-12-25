@@ -57,7 +57,7 @@ class LoginController extends BaseController
 					COUNT(students.id) AS StuNum
 				FROM
 					teachers
-				LEFT JOIN students ON teachers.work_id = :work_id
+				INNER JOIN students ON teachers.work_id = :work_id
 				AND students.teacher_work_id = teachers.work_id
 				GROUP BY teachers.`name`
 			');
