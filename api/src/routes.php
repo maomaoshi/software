@@ -15,3 +15,6 @@ $app->get('/showTeacher',\Controllers\RegistController::class. ':showTeacher');
 $app->get('/teacherInfor',\Controllers\TeacherController::class. ':teacherInfor');
 $app->get('/unselected',\Controllers\TeacherController::class. ':unselected');
 $app->get('/showStudentScore',\Controllers\TeacherController::class. ':showStudentScore');
+$app->get('/studentInfo', \Controllers\StudentController::class. ':studentInfo');
+$app->get('/studentScore', \Controllers\StudentController::class. ':studentScore');
+

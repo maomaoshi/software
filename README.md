@@ -159,7 +159,7 @@
 * name
 	+ 姓名
 
-### 0x10 老师端个人中心信息
+### 0x0A 老师端个人中心信息
 
 #### method get
 #### url api/teacherInfor
@@ -170,7 +170,7 @@
 * StuNum
 	+ 学生人数
 
-### 0x11 老师端未选课程
+### 0x0B 老师端未选课程
 #### method get
 
 #### url api/unselected
@@ -180,7 +180,7 @@
 * course_name
 <<<<<<< HEAD
 
-### 0X12 老师端显示学生成绩
+### 0X0C 老师端显示学生成绩
 
 #### method get
 #### url api/showStudentScore
@@ -212,5 +212,31 @@
 	"score": ["-", "-"]
 }]
 ```
-=======
->>>>>>> 40c89a9c1fb8b5535b60da4e8c5cb149a7500543
+
+### 0x0D学生端显示已考科目的成绩
+
+#### method get
+#### url api/studentScore
+
+#### return
+* course_name
+	+ 课程名
+* score
+	+ 分数
+
+```
+[{
+	"course_name": "课程1",
+	"score": "90"
+}, {
+	"course_name": "课程2",
+	"score": "95"
+}]
+```
+### 0x0E 学生端学生信息
+
+#### method get
+#### url api/studentInfo
+
+#### return
+* name

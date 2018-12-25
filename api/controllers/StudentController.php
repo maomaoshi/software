@@ -11,7 +11,6 @@ class StudentController extends BaseController
 	
 	public function displayStudentCourse()
 	{
-		$_SESSION['id'] = "201608060127";
 		$sth = $this->container['db']->pdo->prepare("
 			SELECT
 				courses.id,
@@ -32,7 +31,6 @@ class StudentController extends BaseController
 
 	public function updateScore()
 	{
-		$_SESSION['id'] = "201608060127";
 		$postArr = $this->container->get('request')->getParsedBody();
 		if (!(isset($postArr['status']) && isset($postArr['course_id']) && isset($postArr['score']))) {
 			return $this->json_fail('fail');
@@ -65,5 +63,30 @@ class StudentController extends BaseController
 			}
 		}
 
+	}
+
+	public function studentInfo()
+	{
+		$info = $this->container['db']->select('students', 'name',[
+				'stu_id'=>$_SESSION['id']
+			]);
+		return json_encode($info[0]);
+	}
+
+	public function studentScore()
+	{
+		$sth = $this->container['db']->pdo->prepare('
+				SELECT
+					courses.course_name,
+					student_score.score
+				FROM
+					students
+				INNER JOIN student_score ON students.stu_id = :stu_id
+				INNER JOIN courses ON student_score.course_id = courses.id
+			');
+		$sth->bindParam(':stu_id',$_SESSION['id'],PDO::PARAM_INT);
+		$sth->execute();
+		$score = $sth->fetchAll(PDO::FETCH_ASSOC);
+		return json_encode($score);
 	}
 }
