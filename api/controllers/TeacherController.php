@@ -100,7 +100,6 @@ class TeacherController extends BaseController
 	}
 	public function showStudentScore()
 	{
-		$_SESSION['id'] = "1234567";
 		$sth = $this->container['db']->pdo->prepare("
 				SELECT
 					students.stu_id,
