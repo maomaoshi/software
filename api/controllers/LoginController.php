@@ -51,21 +51,23 @@ class LoginController extends BaseController
 		]);
 		if($result){
 			Common\SessionCommon::setSession($postArr['id']);
+			$info = array();
+			$name = $this->container['db']->select('teachers','name',[
+					'work_id'=>$_SESSION['id']
+				]);
+			$info['TeaName'] = $name[0];
+
 			$sth = $this->container['db']->pdo->prepare('
 				SELECT
-					teachers.`name` AS TeaName,
 					COUNT(students.id) AS StuNum
 				FROM
-					teachers
-				INNER JOIN students ON teachers.work_id = :work_id
-				AND students.teacher_work_id = teachers.work_id
-				GROUP BY teachers.`name`
+					students WHERE teacher_work_id = :work_id
 			');
 			$sth->bindParam(':work_id',$_SESSION['id'],PDO::PARAM_INT);
 			$sth->execute();
-			$info = $sth->fetchAll(PDO::FETCH_ASSOC)[0];
+			$count = $sth->fetchAll(PDO::FETCH_ASSOC)[0];
+			$info['StuNum'] = $count['StuNum'];
 			$info['status'] = "success";
-			//var_dump($info);
 			return json_encode($info);
 		}
 		else{
