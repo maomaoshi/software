@@ -19,4 +19,5 @@ $app->get('/studentInfo', \Controllers\StudentController::class. ':studentInfo')
 $app->get('/studentScore', \Controllers\StudentController::class. ':studentScore');
 $app->post('/teacherLock',\Controllers\TeacherController::class. ':teacherLock');
 $app->post('/studentLock', \Controllers\StudentController::class. ':studentLock');
-
+$app->post('/publishNotice',\Controllers\TeacherController::class. ':publishNotice');
+$app->get('/noticeList',\Controllers\NoticeController::class. ':noticeList');

@@ -286,3 +286,57 @@
 }
 
 ```
+
+### 0x10 老师端发布公告
+
+#### method post
+#### url api/publishNotice
+
+#### get
+* course_id
+	+ 课程id
+
+#### return
+
+```
+{
+	"status":"success",
+	"message":"publish successfully"
+}
+{
+	"status":"fail",
+	"message":"publish fail"
+}
+```
+
+### 0x11课程公告发布
+
+#### method get
+#### url api/noticeList
+
+#### get
+* course_id
+
+#### return
+* publisher
+	+ 发布人
+* title
+	+ 标题
+* content
+	+ 内容
+* publish_time
+	+ 发布时间
+
+```
+[{
+	"publisher": "胡峰松",
+	"title": "公告2",
+	"content": "快期末了",
+	"publish_time": "2018-12-26 16:49"
+}, {
+	"publisher": "胡峰松",
+	"title": "公告1",
+	"content": "快期末了",
+	"publish_time": "2018-12-26 16:32"
+}]
+```

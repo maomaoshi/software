@@ -150,4 +150,31 @@ class TeacherController extends BaseController
 		}
 	}
 
+	public function publishNotice()
+	{
+		$postArr = $this->container->get('request')->getParsedBody();
+		if (!(isset($postArr['title']) && isset($postArr['content']) && isset($postArr['course_id']))) {
+			return $this->json_fail('fail');
+		}
+		Common\CheckCommon::inputCheck($postArr);
+		$publisher = $this->container['db']->select('teachers','name',[
+				'work_id'=>$_SESSION['id']
+			]);
+		$result = $this->container['db']->insert('notice',[
+				'teacher_work_id' => $_SESSION['id'],
+				'publisher'=>$publisher[0],
+				'course_id'=>$postArr['course_id'],
+				'title'=>$postArr['title'],
+				'content'=>$postArr['content'],
+				'publish_time'=>time()
+			]);
+		if ($result->rowCount()) {
+			return $this->json_success('publish successfully');
+		}
+		else{
+			return $this->json_fail('publish fail');
+		}
+	}
+
+
 }
