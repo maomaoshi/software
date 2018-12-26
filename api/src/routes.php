@@ -17,4 +17,6 @@ $app->get('/unselected',\Controllers\TeacherController::class. ':unselected');
 $app->get('/showStudentScore',\Controllers\TeacherController::class. ':showStudentScore');
 $app->get('/studentInfo', \Controllers\StudentController::class. ':studentInfo');
 $app->get('/studentScore', \Controllers\StudentController::class. ':studentScore');
+$app->post('/teacherLock',\Controllers\TeacherController::class. ':teacherLock');
+$app->post('/studentLock', \Controllers\StudentController::class. ':studentLock');
 

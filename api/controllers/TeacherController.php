@@ -101,13 +101,13 @@ class TeacherController extends BaseController
 	public function showStudentScore()
 	{
 		$_SESSION['id'] = "1234567";
-		$sth = $this->container['db']->pdo->prepare('
+		$sth = $this->container['db']->pdo->prepare("
 				SELECT
 					students.stu_id,
 					students.`name`,
 					COUNT(courses.course_name) AS courseNum,
 					GROUP_CONCAT(courses.course_name) AS courseName,
-					GROUP_CONCAT(student_score.score) AS courseScore
+					GROUP_CONCAT(IFNULL(student_score.score,'-')) As courseScore
 				FROM
 					students 
 				INNER JOIN teacher_course ON teacher_course.teacher_work_id = :work_id
@@ -116,15 +116,39 @@ class TeacherController extends BaseController
 				LEFT JOIN student_score ON student_score.stu_id = students.stu_id
 				AND student_score.course_id = teacher_course.course_id
 				GROUP BY students.stu_id, students.`name`
-			');
+			");
 		$sth->bindParam(':work_id',$_SESSION['id'],PDO::PARAM_INT);
 		$sth->execute();
 		$table = $sth->fetchAll(PDO::FETCH_ASSOC);
-		var_dump($table);
-		/*foreach ($table as $key => $value) {
+		foreach ($table as $key => $value) {
 			$courseArr = explode(',', $value['courseName']);
 			$scoreArr = explode(',', $value['courseScore']);
-		}*/
+			$table[$key]['courseName'] = $courseArr;
+			$table[$key]['courseScore'] = $scoreArr;
+		}
+		return json_encode($table);
+
+	}
+
+	public function teacherLock()
+	{
+		$postArr = $this->container->get('request')->getParsedBody();
+		if (!isset($postArr['password'])) {
+				return $this->json_fail('fail');
+		}
+		$result = $this->container['db']->has('teachers',[
+				"AND"=>[
+					"work_id"=>$_SESSION['id'],
+					"password"=>md5($postArr['password'])
+				]
+			]);
+		if ($result) {
+			return $this->json_success('password is correct');
+			
+		}
+		else{
+			return $this->json_fail('password is wrong');
+		}
 	}
 
 }

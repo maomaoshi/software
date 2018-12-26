@@ -89,4 +89,25 @@ class StudentController extends BaseController
 		$score = $sth->fetchAll(PDO::FETCH_ASSOC);
 		return json_encode($score);
 	}
+
+	public function studentLock()
+	{
+		$postArr = $this->container->get('request')->getParsedBody();
+		if (!isset($postArr['password'])) {
+				return $this->json_fail('fail');
+		}
+		$result = $this->container['db']->has('students',[
+				"AND"=>[
+					"stu_id"=>$_SESSION['id'],
+					"password"=>md5($postArr['password'])
+				]
+			]);
+		if ($result) {
+			return $this->json_success('password is correct');
+			
+		}
+		else{
+			return $this->json_fail('password is wrong');
+		}
+	}
 }

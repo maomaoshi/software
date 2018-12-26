@@ -240,3 +240,49 @@
 
 #### return
 * name
+
+### 0x0F 老师端锁
+
+#### method post
+#### url api/teacherLock
+
+#### get
+
+* password
+
+#### return
+
+```
+{
+	"status":"success",
+	"message":"password is correct"
+}
+{
+	"status":"fail",
+	"message":"password is wrong"
+}
+
+```
+
+### 0x0F 老师端锁
+
+#### method post
+#### url api/studentLock
+
+#### get
+
+* password
+
+#### return
+
+```
+{
+	"status":"success",
+	"message":"password is correct"
+}
+{
+	"status":"fail",
+	"message":"password is wrong"
+}
+
+```
