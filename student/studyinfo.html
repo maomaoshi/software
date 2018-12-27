@@ -251,7 +251,7 @@
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
           <p class="centered"><a href="profile.html"><img src="img/student.jpeg" class="img-circle" width="80"></a></p>
-          <h5 class="centered">李华</h5>
+          <h5 class="centered"></h5>
           <li class="mt">
             <a href="personinfo.html">
               <i class="fa fa-dashboard"></i>
@@ -280,84 +280,7 @@
               <li><a href="个人图册.html">个人图册</a></li>
             </ul>
           </li>
-           <!--
-          <li class="sub-menu">
-            <a href="javascript:;">
-              <i class="fa fa-book"></i>
-              <span>Extra Pages</span>
-              </a>
-            <ul class="sub">
-              <li><a href="blank.html">Blank Page</a></li>
-              <li><a href="login.html">Login</a></li>
-              <li><a href="lock_screen.html">Lock Screen</a></li>
-              <li><a href="profile.html">Profile</a></li>
-              <li><a href="invoice.html">Invoice</a></li>
-              <li><a href="pricing_table.html">Pricing Table</a></li>
-              <li><a href="faq.html">FAQ</a></li>
-              <li><a href="404.html">404 Error</a></li>
-              <li><a href="500.html">500 Error</a></li>
-            </ul>
-          </li>
-          <li class="sub-menu">
-            <a href="javascript:;">
-              <i class="fa fa-tasks"></i>
-              <span>Forms</span>
-              </a>
-            <ul class="sub">
-              <li><a href="form_component.html">Form Components</a></li>
-              <li><a href="advanced_form_components.html">Advanced Components</a></li>
-              <li><a href="form_validation.html">Form Validation</a></li>
-              <li><a href="contactform.html">Contact Form</a></li>
-              <li><a href="contactform.html">Contact Form</a></li>
-            </ul>
-          </li>
-          <li class="sub-menu">
-            <a href="javascript:;">
-              <i class="fa fa-th"></i>
-              <span>Data Tables</span>
-              </a>
-            <ul class="sub">
-              <li><a href="basic_table.html">Basic Table</a></li>
-              <li><a href="responsive_table.html">Responsive Table</a></li>
-              <li><a href="advanced_table.html">Advanced Table</a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="inbox.html">
-              <i class="fa fa-envelope"></i>
-              <span>Mail </span>
-              <span class="label label-theme pull-right mail-info">2</span>
-              </a>
-          </li>
-          <li class="sub-menu">
-            <a href="javascript:;">
-              <i class=" fa fa-bar-chart-o"></i>
-              <span>Charts</span>
-              </a>
-            <ul class="sub">
-              <li><a href="morris.html">Morris</a></li>
-              <li><a href="chartjs.html">Chartjs</a></li>
-              <li><a href="flot_chart.html">Flot Charts</a></li>
-              <li><a href="xchart.html">xChart</a></li>
-            </ul>
-          </li>
-          <li class="sub-menu">
-            <a href="javascript:;">
-              <i class="fa fa-comments-o"></i>
-              <span>Chat Room</span>
-              </a>
-            <ul class="sub">
-              <li><a href="lobby.html">Lobby</a></li>
-              <li><a href="chat_room.html"> Chat Room</a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="google_maps.html">
-              <i class="fa fa-map-marker"></i>
-              <span>Google Maps </span>
-              </a>
-          </li>
-          -->
+          
         </ul>
         
         <!-- sidebar menu end-->
@@ -467,31 +390,10 @@
             </br>
               <div class="col-md-12">
                   <div class="content-panel">
-                    <h4><i class="fa fa-angle-right"></i> 成绩 </h4>
+                    <h4><i class="fa fa-angle-right"></i> 成绩</h4>
                     <hr>
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <th>#</th>
-                          <th>课程1</th>
-                          <th>课程2</th>
-                          <th>课程3</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>分数</td>
-                          <td>98</td>
-                          <td>90</td>
-                          <td>100</td>
-                        </tr>
-                        <tr>
-                          <td>排名</td>
-                          <td>2</td>
-                          <td>12</td>
-                          <td>1</td>
-                        </tr>
-                      </tbody>
+                    <table id="score_table" class="table">
+                     
                     </table>
                   </div>
                 </div>
@@ -539,6 +441,37 @@
   <!--script for this page-->
   <script src="lib/sparkline-chart.js"></script>
 
+  <script type="text/javascript">
+    $(document).ready(function() {
+    $.ajax({
+        type: "GET",
+        url: "../api/showStudentScore",
+        dataType : "json",
+        success: function(data){
+            var s1="#";
+            var inner = "<thead>"+"<tr>"+"<th>"+s1+"</th>";
+            var CourseNum=data.length;
+            alert("num:"+CourseNum);
+            for(var i=0;i<CourseNum;i++){
+                var course=data[i]["course_name"];
+                inner += "<th>"+course+"</th>";
+            }
+            inner += "</tr>"+"</thead>"+"<tbody>"+"<tr>"+"<td>"+"分数"+"</td>";
+            for(var i=0;i<CourseNum;i++) {
+                var stu_score=data[i]["score"];
+                inner+="<td>"+stu_score+"</td>";
+            }
+            inner+="</tr>"+"</tbody>";
+        document.getElementById('score_table').innerHTML=inner;
+        },
+        error:function(data){
+            alert('成绩导入错误！');
+        }
+    });
+    });
+  
+  </script>
+  
 </body>
 
 </html>

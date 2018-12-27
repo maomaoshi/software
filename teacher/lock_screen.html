@@ -50,7 +50,7 @@
               </div>
               <div class="modal-body">
                 <p class="centered"><img class="img-circle" width="80" src="img/头像.jpg"></p>
-                <input type="password" name="password" placeholder="Password" autocomplete="off" class="form-control placeholder-no-fix">
+                <input type="password" id="password" placeholder="Enter Password" autocomplete="off" class="form-control placeholder-no-fix">
               </div>
               <div class="modal-footer centered">
                 <button data-dismiss="modal" class="btn btn-theme04" type="button">Cancel</button>
@@ -102,28 +102,29 @@
 
 <script type="application/javascript">
   $(document).ready(function() {
-      $("#TeaName1").text(localStorage.getItem("TeaName"));
+    var obj=document.getElementById("TeaName1");
+    obj.innerHTML=localStorage.getItem('TeaName');
+      //$("#TeaName1").text(localStorage.getItem("TeaName"));
   });
   </script>
 <script type="text/javascript">
   history.pushState(null, null, document.URL);
-        window.addEventListener('popstate', function () {
-            history.pushState(null, null, document.URL);
+      window.addEventListener('popstate', function () {
+         history.pushState(null, null, document.URL);
   });
 
   function re_login()
 {
-    var id = document.getElementById("TeaName1").value.trim();
-    var pwd = document.getElementsByName("password").value.trim();
-    var urlstr="api/teacherLogin";
+    var pwd = document.getElementById("password").value;
+    var urlstr="../api/teacherLock";
     $.ajax({
                 type: "POST",
                 url: urlstr,
-                data:{"id":id,"password":pwd},
+                data:{"password":pwd},
                 dataType : "json",
                 success: function(data){ //JQuery版本的升级，JQuery的ajax方法发生了变化，ajax的sucess的回调值直接将json解析，造成了这种错误。
                     if(data['status']=="fail"){
-                        alert("解锁失败！");
+                        alert("解锁失败！即将跳转回主页面...");
                     }
                     else{
                         alert("解锁成功");

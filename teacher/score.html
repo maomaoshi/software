@@ -293,47 +293,8 @@
                           <!--<h4><i class="fa fa-angle-right"></i> 课程一 </h4>
                           -->
                           <hr>
-                          <table class="table">
-                            
-                            <!--
-                              <tr>
-                                <td>李华</td>
-                                <td>90</td>
-                                <td>88</td>
-                                <td>92</td>
-                              </tr>
-                              <tr>
-                                <td>小花</td>
-                                <td>90</td>
-                                <td>88</td>
-                                <td>92</td>
-                              </tr>
-                              <tr>
-                                <td>小明</td>
-                                <td>90</td>
-                                <td>88</td>
-                                <td>92</td>
-                              </tr>
-                              <tr>
-                                <td>小华</td>
-                                <td>90</td>
-                                <td>88</td>
-                                <td>92</td>
-                              </tr>
-                              <tr>
-                                <td>小玲</td>
-                                <td>90</td>
-                                <td>88</td>
-                                <td>92</td>
-                              </tr>
-                              <tr>
-                                <td>晓晓</td>
-                                <td>90</td>
-                                <td>88</td>
-                                <td>92</td>
-                              </tr>
-                            </tbody>
-                            -->
+                          <table id="score_table" class="table">
+                      
                           </table>
                         </div>
                       </div>  
@@ -383,24 +344,24 @@
   <!--common script for all pages-->
   <script src="lib/common-scripts.js"></script>
 
- <script>
+ <!--<script>
 $(function () {
 
     $.ajax({
             type:"get",
-            url:"../api/?",
+            url:"../api/showStudentScore",
             dataType:'json',
             success:function (data) {
                 queryTable(data);
             }
-            error: function(data){
+            error:function(data){
               alert("create score_table error!");
             }
         });
 
         function queryTable(data){
 
-        var thead = "<thead><tr  class='danger'><th>";
+        var thead = "<thead><tr><th>";
         var tbody = "<tbody>";
         var th = "";
         $.each(data.data.colum,function (key,value) {
@@ -431,7 +392,44 @@ $(function () {
 
     };
 });
+</script>
+-->
 
+<script type="text/javascript">
+  $(document).ready(function() {
+  $.ajax({
+      type: "GET",
+      url: "../api/showStudentScore",
+      dataType : "json",
+      success: function(data){
+          var s1="学生姓名";
+          var s2="学号";
+          var inner = "<thead>"+"<tr>"+"<th>"+s1+"</th>"+"<th>"+s2+"</th>";
+          var CourseNum=data[0]["courseNum"];
+          for(var i=0;i<CourseNum;i++){
+              var course=data[0]["courseName"][i];
+              inner += "<th>"+course+"</th>";
+          }
+          inner += "</tr>"+"</thead>"+"<tbody>";
+          for(var i=0;i<data.length;i++) {
+              inner+="<tr>";
+              var student_id=data[i]["stu_id"];
+              var student_name=data[i]["name"];
+              inner+="<td>"+student_name+"</td>"+"<td>"+student_id+"</td>";
+              for(var j=0;j<CourseNum;j++){
+                var stu_score=data[i]["courseScore"][j];
+                inner += "<td>" + stu_score + "</td>";
+              }
+              inner+="</tr>";
+          }
+          inner+="</tbody>";
+      document.getElementById('score_table').innerHTML=inner;
+      },
+      error:function(data){
+          alert('成绩导入错误！');
+      }
+  });
+  });
 
 </script>
 

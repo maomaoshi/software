@@ -120,14 +120,27 @@ function check_loginForm(){    //检查登录表单
                                 var storage=window.localStorage;
                                 storage.clear();
                                 //写入教师名字段
-                                alert(data['TeaName']);
+                                alert("欢迎您，"+data['TeaName']);
                                 storage["TeaName"]=data['TeaName'];
                                 storage["StuNum"]=data['StuNum'];
-
+                                storage["TeaId"]=data["id"];
                             }
                             window.location.href = "./teacher/teacher.html";
                         }
-                        else{window.location.href = "./student/student.html";}
+                        else{
+                            if(!window.localStorage){
+                                alert("浏览器支持localstorage");
+                            }
+                            else {
+                                var storage=window.localStorage;
+                                storage.clear();
+                                //写入学生名字段
+                                alert("欢迎您！"+data['name']);
+                                storage["TeaName"]=data['TeaName'];
+                                storage["name"]=data['name'];
+                                storage["Id"]=data["id"];
+                            }
+                            window.location.href = "./student/student.html";}
 
                     }
                 },

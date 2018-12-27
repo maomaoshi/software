@@ -272,7 +272,7 @@
 
 ```
 
-### 0x0F 老师端锁
+### 0x0F 学生端锁
 
 #### method post
 #### url api/studentLock

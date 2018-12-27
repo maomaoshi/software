@@ -126,7 +126,7 @@ function check_signForm(){    //检查注册表单
         }
         else{
             urlstr="api/studentRegist";
-            postdata = {"teacherID":teaid,"id":id,"name":role_name,"password":pwd1,"repassword":pwd2};
+            postdata = {"id":id,"name":role_name,"password":pwd1,"repassword":pwd2,"teacher_id":teaid,"teacher_work_id":teaid};
         }
         $.ajax({
                 type: "POST",
