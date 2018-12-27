@@ -97,10 +97,17 @@ class LoginController extends BaseController
 		]);
 		if($result){
 			Common\SessionCommon::setSession($postArr['id']);
-			$info = $this->container['db']->select('students', 'name',[
+			$info = $this->container['db']->select('students', [
+					'name',
+					'teacher_work_id'
+				],[
 				'stu_id'=>$_SESSION['id']
 			]);
 			$info = $info[0];
+			$TeaName = $this->container['db']->select('teachers','name',[
+					'work_id'=>$info['teacher_work_id']
+				])[0];
+			$info['TeaName'] = $TeaName;
 			$info['status'] = "success";
 			return json_encode($info);
 		}
