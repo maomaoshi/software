@@ -75,10 +75,10 @@ class StudentController extends BaseController
 
 	public function studentScore()
 	{
-		$sth = $this->container['db']->pdo->prepare('
+		$sth = $this->container['db']->pdo->prepare("
 				SELECT
 					courses.course_name,
-					student_score.score
+					IFNULL(student_score.score,'-')
 				FROM
 					students
 				INNER JOIN teacher_course ON students.stu_id = :stu_id
@@ -87,7 +87,7 @@ class StudentController extends BaseController
 				LEFT JOIN student_score ON student_score.course_id = courses.id
 				AND student_score.stu_id = :stu_id
 				ORDER BY courses.id ASC
-			');
+			");
 		$sth->bindParam(':stu_id',$_SESSION['id'],PDO::PARAM_INT);
 		$sth->execute();
 		$score = $sth->fetchAll(PDO::FETCH_ASSOC);
