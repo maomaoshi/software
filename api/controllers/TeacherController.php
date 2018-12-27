@@ -105,8 +105,8 @@ class TeacherController extends BaseController
 					students.stu_id,
 					students.`name`,
 					COUNT(courses.course_name) AS courseNum,
-					GROUP_CONCAT(courses.course_name) AS courseName,
-					GROUP_CONCAT(IFNULL(student_score.score,'-')) As courseScore
+					GROUP_CONCAT(courses.course_name ORDER BY  courses.id ASC) AS courseName,
+					GROUP_CONCAT(IFNULL(student_score.score,'-') ORDER BY  courses.id ASC) As courseScore
 				FROM
 					students 
 				INNER JOIN teacher_course ON teacher_course.teacher_work_id = :work_id
