@@ -78,7 +78,7 @@ class StudentController extends BaseController
 		$sth = $this->container['db']->pdo->prepare("
 				SELECT
 					courses.course_name,
-					IFNULL(student_score.score,'-')
+					IFNULL(student_score.score,'-') AS score
 				FROM
 					students
 				INNER JOIN teacher_course ON students.stu_id = :stu_id
