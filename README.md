@@ -192,9 +192,9 @@
 	+ 姓名
 * courseNum
 	+ 课程数
-* courses
+* courseName
 	+ 课程名（数组）
-* score
+* courseScore
 	+ 课程分数（数组）
 
 ```
@@ -202,14 +202,14 @@
 	"stu_id": "201608060127",
 	"name": "顾文洁",
 	"courseNum": "2",
-	"courses": ["课程1", "课程2"],
-	"score": ["-", "95"]
+	"courseName": ["课程1", "课程2"],
+	"courseScore": ["-", "95"]
 }, {
 	"stu_id": "201608060128",
 	"name": "guwenjie",
 	"courseNum": "2",
-	"courses": ["课程1", "课程2"],
-	"score": ["-", "-"]
+	"courseName": ["课程1", "课程2"],
+	"courseScore": ["-", "-"]
 }]
 ```
 
