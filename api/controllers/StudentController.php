@@ -81,8 +81,12 @@ class StudentController extends BaseController
 					student_score.score
 				FROM
 					students
-				INNER JOIN student_score ON students.stu_id = :stu_id
-				INNER JOIN courses ON student_score.course_id = courses.id
+				INNER JOIN teacher_course ON students.stu_id = :stu_id
+				AND teacher_course.teacher_work_id = students.teacher_work_id
+				INNER JOIN courses ON courses.id = teacher_course.course_id
+				LEFT JOIN student_score ON student_score.course_id = courses.id
+				AND student_score.stu_id = :stu_id
+				ORDER BY courses.id ASC
 			');
 		$sth->bindParam(':stu_id',$_SESSION['id'],PDO::PARAM_INT);
 		$sth->execute();
