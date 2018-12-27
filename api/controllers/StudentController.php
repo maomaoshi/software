@@ -77,6 +77,7 @@ class StudentController extends BaseController
 	{
 		$sth = $this->container['db']->pdo->prepare("
 				SELECT
+					courses.id,
 					courses.course_name,
 					IFNULL(student_score.score,'-') AS score
 				FROM
