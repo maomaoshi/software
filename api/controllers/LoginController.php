@@ -97,7 +97,12 @@ class LoginController extends BaseController
 		]);
 		if($result){
 			Common\SessionCommon::setSession($postArr['id']);
-			return $this->json_success('login succsess');
+			$info = $this->container['db']->select('students', 'name',[
+				'stu_id'=>$_SESSION['id']
+			]);
+			$info = $info[0];
+			$info['status'] = "success";
+			return json_encode($info);
 		}
 		else{
 			return $this->json_fail('student ID or password is error');

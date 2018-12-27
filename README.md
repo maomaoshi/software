@@ -44,6 +44,13 @@
 *  passward
 	+ 密码
 #### return
+```
+{
+	"status":"success",
+	"name":"顾文洁"
+}
+
+```
 
 ### 0x02 学生登录
 #### method post
