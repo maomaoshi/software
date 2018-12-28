@@ -400,7 +400,7 @@
           for(var i=0;i<CourseNum;i++){
               var course=data[i]["course_name"];
               var stu_score=data[i]["score"];
-              if(stu_score=='-') inner +="<tr>"+ "<td>"+"<a href='../test_paper1.html'>"+course+"</a>"+"------考试时长：100分钟---满分：100---点击现在参与考试"+"</td>"+"</tr>";
+              if(stu_score=='-') inner +="<tr>"+ "<td>"+"<a onclick='save("+i+")'"+ " href='../test_paper1.html'>"+course+"</a>"+"------考试时长：100分钟---满分：100---点击现在参与考试"+"</td>"+"</tr>";
               else {
                   inner2+='<li>'+' <div class="task-checkbox">'+'<input type="checkbox" class="list-child" value="" />';
                   inner2+='</div>'+'<div class="task_title">'+'<span class="task-title-sp">'+course+'</span>';
@@ -425,6 +425,15 @@
 
 </script>
 
+<script>
+  function save(obj){
+     if(obj==0)  localStorage.lesson_id=6;
+     else if(obj==1)  localStorage.lesson_id=7;
+     else if(obj==2)  localStorage.lesson_id=8;
+     else if(obj==3)  localStorage.lesson_id=9;
+     else if(obj==4)  localStorage.lesson_id=10;
+  }
+  </script>
 </body>
 
 </html>

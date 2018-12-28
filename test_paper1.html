@@ -231,10 +231,14 @@
 
                     </ol>
                 </div>
-                <div align="center"><button onclick="check()">提交</button></div>
+                <div align="center"><button onclick="check();update_score()">提交</button></div>
 
         </head>
     <body onload="timeCounter('timeCounter')">
+
+            <script type="text/javascript" src="./js/jquery-1.11.1.min.js"></script>
+            <script type="text/javascript" src="./js/jquery.min.js"></script>
+            <script type="text/javascript" src="./js/jquery.js"></script>
     <script>
     var a1 = document.getElementsByName("1");
     var a2 = document.getElementsByName("2");
@@ -277,7 +281,6 @@
     if(a8[0].checked) score+=3;
     if(a9[0].checked) score+=3;
     if(a10[0].checked) score+=3;
-    alert ("单选："+score);
 
     if(a11[0].checked && a11[1].checked && !a11[2].checked && !a11[3].checked) score+=3;
     if(a12[0].checked && a12[1].checked && !a12[2].checked && !a12[3].checked) score+=3;
@@ -289,19 +292,41 @@
     if(a18[0].checked && a18[1].checked && !a18[2].checked && !a18[3].checked) score+=3;
     if(a19[0].checked && a19[1].checked && !a19[2].checked && !a19[3].checked) score+=3;
     if(a20[0].checked && a20[1].checked && !a20[2].checked && !a20[3].checked) score+=3;
-    alert ("多选："+score);
 
     if(a21[0].checked) score+=4;
     if(a22[0].checked) score+=4;
     if(a23[0].checked) score+=4;
     if(a24[0].checked) score+=4;
     if(a25[0].checked) score+=4;
-    alert ("判断："+score);
     if(document.getElementsByName("a26").value!="") score+=10;
     if(document.getElementsByName("a27").value!="") score+=10;
-    alert ("主观："+score);
-    alert("Final score is:"+score);
+
 }    
+    </script>
+    
+     <script type="text/javascript">
+    function update_score(){
+        var lesson_id=localStorage.lesson_id;
+        alert("id:"+lesson_id);
+        alert("score:"+score);
+        var urlstr = "";
+        var postdata;
+        urlstr="api/updateScore";
+        postdata = {"status":1,"course_id":lesson_id,"score":score};
+        $.ajax({
+                type: "POST",
+                url: urlstr,
+                data: postdata,
+                dataType : "json",
+                success: function(data){ //JQuery版本的升级，JQuery的ajax方法发生了变化，ajax的sucess的回调值直接将json解析，造成了这种错误。
+                   alert("success!");
+                    window.location.href="student/student.html";
+                },
+                error:function (data) {
+                    alert("test Error,please contact Manager");
+                }
+            });
+    }
     </script>
     
     </body>  
