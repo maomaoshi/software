@@ -227,6 +227,8 @@
 #### url api/studentScore
 
 #### return
+* id
+	+ 课程id
 * course_name
 	+ 课程名
 * score
@@ -234,9 +236,11 @@
 
 ```
 [{
+	"id":1,
 	"course_name": "课程1",
 	"score": "90"
 }, {
+	"id":2,
 	"course_name": "课程2",
 	"score": "95"
 }]
