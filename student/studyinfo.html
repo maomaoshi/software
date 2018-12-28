@@ -236,8 +236,8 @@
       </div>
       <div class="top-menu">
         <ul class="nav pull-right top-menu">
-          <!-- <li><a class="logout" href="login.html">Logout</a></li>
-          -->
+           <li><a class="logout" href="../Log_in.html">Logout</a></li>
+          
         </ul>
       </div>
     </header>
@@ -253,7 +253,7 @@
           <p class="centered"><a href="profile.html"><img src="img/student.jpeg" class="img-circle" width="80"></a></p>
           <h5 class="centered"></h5>
           <li class="mt">
-            <a href="personinfo.html">
+            <a href="student.html">
               <i class="fa fa-dashboard"></i>
               <span>个人中心</span>
               </a>
@@ -301,11 +301,11 @@
               <div class="col-md-4 col-sm-4 mb">
                 <div class="grey-panel pn donut-chart">
                   <div class="grey-header">
-                    <h5>课程1</h5>
+                    <h5>40秒快速了解保密法</h5>
                   </div>
                   <canvas id="serverstatus01" height="120" width="120"></canvas>
                   <script>
-                    var doughnutData = [{
+                    var doughnutData1 = [{
                         value: 50,
                         color: "#FF6B6B"
                       },
@@ -314,14 +314,14 @@
                         color: "#fdfdfd"
                       }
                     ];
-                    var myDoughnut = new Chart(document.getElementById("serverstatus01").getContext("2d")).Doughnut(doughnutData);
+                    var myDoughnut1 = new Chart(document.getElementById("serverstatus01").getContext("2d")).Doughnut(doughnutData1);
                   </script>
                   <div class="row">
                     <div class="col-sm-6 col-xs-6 goleft">
                       <p>进度：</p>
                     </div>
                     <div class="col-sm-6 col-xs-6">
-                      <h2>50%</h2>
+                      <h2 id="one"></h2>
                     </div>
                   </div>
                 </div>
@@ -331,27 +331,27 @@
               <div class="col-md-4 col-sm-4 mb">
                 <div class="darkblue-panel pn">
                   <div class="darkblue-header">
-                    <h5>课程2</h5>
+                    <h5>保密法扫盲</h5>
                   </div>
                   <canvas id="serverstatus02" height="120" width="120"></canvas>
                   <script>
-                    var doughnutData = [{
-                        value: 60,
+                    var doughnutData2 = [{
+                        value: 42,
                         color: "#1c9ca7"
                       },
                       {
-                        value: 40,
+                        value: 58,
                         color: "#f68275"
                       }
                     ];
-                    var myDoughnut = new Chart(document.getElementById("serverstatus02").getContext("2d")).Doughnut(doughnutData);
+                    var myDoughnut2 = new Chart(document.getElementById("serverstatus02").getContext("2d")).Doughnut(doughnutData2);
                   </script>
                   <div class="row">
                       <div class="col-sm-6 col-xs-6 goleft">
                         <p>进度:</p>
                       </div>
                       <div class="col-sm-6 col-xs-6">
-                        <h2>60%</h2>
+                        <h2 id="two">45/101</h2>
                       </div>
                     </div>
                 </div>
@@ -361,27 +361,27 @@
               <div class="col-md-4 col-sm-4 mb">
                 <div class="green-panel pn">
                   <div class="green-header">
-                    <h5>课程3</h5>
+                    <h5>涉密计算机的正确使用</h5>
                   </div>
                   <canvas id="serverstatus03" height="120" width="120"></canvas>
                   <script>
                     var doughnutData = [{
-                        value: 80,
+                        value: 75,
                         color: "#2b2b2b"
                       },
                       {
-                        value: 20,
+                        value: 25,
                         color: "#fffffd"
                       }
                     ];
-                    var myDoughnut = new Chart(document.getElementById("serverstatus03").getContext("2d")).Doughnut(doughnutData);
+                    var myDoughnut3 = new Chart(document.getElementById("serverstatus03").getContext("2d")).Doughnut(doughnutData);
                   </script>
                   <div class="row">
                       <div class="col-sm-6 col-xs-6 goleft">
                         <p>进度:</p>
                       </div>
                       <div class="col-sm-6 col-xs-6">
-                        <h2>80%</h2>
+                        <h2 id="three">75/100</h2>
                       </div>
                     </div>
                 </div>
@@ -443,15 +443,17 @@
 
   <script type="text/javascript">
     $(document).ready(function() {
+      doughnutData1[0].value=localStorage.getItem("see")/localStorage.getItem("alto")*100;
+      doughnutData1[1].value=100-doughnutData1[0].value;
+      $("#one").text(localStorage.getItem("see")+"/"+localStorage.getItem("alto"));
     $.ajax({
         type: "GET",
-        url: "../api/showStudentScore",
+        url: "../api/studentScore",
         dataType : "json",
         success: function(data){
             var s1="#";
             var inner = "<thead>"+"<tr>"+"<th>"+s1+"</th>";
             var CourseNum=data.length;
-            alert("num:"+CourseNum);
             for(var i=0;i<CourseNum;i++){
                 var course=data[i]["course_name"];
                 inner += "<th>"+course+"</th>";

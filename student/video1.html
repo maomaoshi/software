@@ -3,12 +3,34 @@
 <head>
  <meta charset="utf-8">
  <title>视频1</title>
-<h1 align="center">NFTP缓冲区溢出漏洞</h1>
-<!--<video align="center" src="mda-ic3eip66u80zeutr.mp4" type="video/mp4" controls autoplay width="500px" height="380px" >
-    </video>
--->
+<h1 align="center">40秒快速了解保密法</h1>
 <div align="center">
-        <iframe width="800px" height="500px" src="https://www.ichunqiu.com/course/60711#" frameborder=0 allowfullscreen></iframe>
-    </div>
+<video id="video1" src="video/视频1.mp4" type="video/mp4" controls autoplay width="600px" height="480px" >
+    </video>
+    
+    <p>这节课程主要就保密法进行简短介绍，旨在对保密法问题不了解的人进行简单的扫盲</p>
+    <p>能够让用户在非常短的时间内对保密法的内容作出简单的了解，使每个保密工作人员</p>
+    <p>都能做到知法懂法，做三好公民,达到保密工作部门的硬性要求，做合格涉密人员。</p>
+</div>
+
+<body onload="getAltoTime()" onunload="getCurTime()"></body>
+<script>
+
+    function getAltoTime()
+      { 
+        var altotime = parseInt(document.getElementById("video1").duration);
+      
+        localStorage.alto=altotime;
+      } 
+    function getCurTime()
+  { 
+    var seetime = parseInt(document.getElementById("video1").currentTime);
+   
+    localStorage.see=seetime;
+  } 
+</script> 
+
+</body>
+</head>
 
 </html>

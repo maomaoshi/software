@@ -124,10 +124,10 @@
                 dataType : "json",
                 success: function(data){ //JQuery版本的升级，JQuery的ajax方法发生了变化，ajax的sucess的回调值直接将json解析，造成了这种错误。
                     if(data['status']=="fail"){
-                        alert("解锁失败！即将跳转回主页面...");
+                        alert("解锁失败！");
                     }
                     else{
-                        alert("解锁成功");
+                        alert("解锁成功!即将跳转回主页面...");
                         window.location.href = "student.html";
                     }
                 },

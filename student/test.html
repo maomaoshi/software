@@ -251,9 +251,9 @@
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
           <p class="centered"><a href="profile.html"><img src="img/student.jpeg" class="img-circle" width="80"></a></p>
-          <h5 class="centered">李华</h5>
+          <h5 class="centered"></h5>
           <li class="mt">
-              <a href="personinfo.html">
+              <a href="student.html">
                 <i class="fa fa-dashboard"></i>
                 <span>个人中心</span>
                 </a>
@@ -305,24 +305,7 @@
               </div>
               <div class="custom-check goleft mt">
                 <table id="todo" class="table table-hover custom-check">
-                  <tbody>
-                    <tr>
-                      <td>
-                        
-                        <a href="tiku_1.html#">课程1</a></span>
-                        <span class="task-title-sp">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp考试时长：100分钟  满分：100分</span>
-                        <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                       
-                        <a href="tiku_2.html#">课程2</a></span>
-                        <span class="task-title-sp">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp考试时长：120分钟  满分：100分</span>
-                        <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-                      </td>
-                    </tr>
-                  </tbody>
+
                 </table>
               </div>
               <!-- /table-responsive -->
@@ -338,74 +321,14 @@
             <section class="task-panel tasks-widget">
               <div class="panel-heading">
                 <div class="pull-left">
-                  <h5><i class="fa fa-tasks"></i>已参加考试</h5>
+                  <h5><i class="fa fa-tasks"></i>已参加考试&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>(100:Excellent!-----80~100:Good Job!-----60~80:Fighting!-----0~60:Dangerous!)</small></h5>
                 </div>
                 <br>
               </div>
               <div class="panel-body">
                 <div class="task-content">
-                  <ul class="task-list">
-                    <li>
-                      <div class="task-checkbox">
-                        <input type="checkbox" class="list-child" value="" />
-                      </div>
-                      <div class="task-title">
-                        <span class="task-title-sp">课程5</span>
-                        <span class="badge bg-theme">Well Done!</span>
-                        <div class="pull-right hidden-phone">
-                          <button class="btn btn-success btn-xs"><i class=" fa fa-check"></i></button>
-                          <!--<button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                          <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-                          -->
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="task-checkbox">
-                        <input type="checkbox" class="list-child" value="" />
-                      </div>
-                      <div class="task-title">
-                        <span class="task-title-sp">课程3</span>
-                        <span class="badge bg-warning">Good Job!</span>
-                        <div class="pull-right hidden-phone">
-                          <button class="btn btn-success btn-xs"><i class=" fa fa-check"></i></button>
-                          <!-- <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                          <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-                        -->
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="task-checkbox">
-                        <input type="checkbox" class="list-child" value="" />
-                      </div>
-                      <div class="task-title">
-                        <span class="task-title-sp">课程4</span>
-                        <span class="badge bg-success">Come on!</span>
-                        <div class="pull-right hidden-phone">
-                          <button class="btn btn-success btn-xs"><i class=" fa fa-check"></i></button>
-                          <!--<button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                          <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-                          -->
-                        </div>
-                      </div>
-                    </li>
+                  <ul class="task-list" id="unjoined">
                     
-                    <li>
-                      <div class="task-checkbox">
-                        <input type="checkbox" class="list-child" value="" />
-                      </div>
-                      <div class="task-title">
-                        <span class="task-title-sp">课程6</span>
-                        <span class="badge bg-important">Nice!</span>
-                        <div class="pull-right">
-                          <button class="btn btn-success btn-xs"><i class=" fa fa-check"></i></button>
-                          <!--<button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                          <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-                          -->
-                        </div>
-                      </div>
-                    </li>
                   </ul>
                 </div>
               </div>
@@ -463,6 +386,44 @@
       $("#sortable").disableSelection();
     });
   </script>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+  $.ajax({
+      type: "GET",
+      url: "../api/studentScore",
+      dataType : "json",
+      success: function(data){
+          var inner = "<tbody>";
+          var inner2="";
+          var CourseNum=data.length;
+          for(var i=0;i<CourseNum;i++){
+              var course=data[i]["course_name"];
+              var stu_score=data[i]["score"];
+              if(stu_score=='-') inner +="<tr>"+ "<td>"+"<a href='../test_paper1.html'>"+course+"</a>"+"------考试时长：100分钟---满分：100---点击现在参与考试"+"</td>"+"</tr>";
+              else {
+                  inner2+='<li>'+' <div class="task-checkbox">'+'<input type="checkbox" class="list-child" value="" />';
+                  inner2+='</div>'+'<div class="task_title">'+'<span class="task-title-sp">'+course+'</span>';
+                  if(stu_score==100) inner2+='<span class="badge bg-theme">Excellent!</span>';
+                  else if(stu_score>=80&&stu_score<100) inner2+='<span class="badge bg-success">Good Job!</span>';
+                  else if(stu_score>=60&&stu_score<80) inner2+='<span class="badge bg-warning">Fighting!</span>';
+                  else inner2+='<span class="badge bg-important">Dangerous!</span>';
+                  inner2+='<div class="pull-right hidden-phone">';
+                  inner2+='<button class="btn btn-success btn-xs"><i class=" fa fa-check"></i></button>';
+                  inner2+='</div></div></li>';
+              }
+          }
+          inner += "</tbody>";
+      document.getElementById("unjoined").innerHTML=inner2;
+      document.getElementById('todo').innerHTML=inner;
+      },
+      error:function(data){
+          alert('成绩导入错误！');
+      }
+  });
+  });
+
+</script>
 
 </body>
 

@@ -222,11 +222,11 @@
                     <ol>
                      <li>
                      <b>请回答你对？</b>
-                     <p><textarea style="width:300px;height:100px;"></textarea></p>
+                     <p><textarea id="26" style="width:300px;height:100px;" ></textarea></p>
                      </li>
                      <li>
                      <b>请回答你对？</b>
-                     <p><textarea style="width:300px;height:100px;"></textarea></p>
+                     <p><textarea id="27"style="width:300px;height:100px;" ></textarea></p>
                      </li>
 
                     </ol>
@@ -277,6 +277,7 @@
     if(a8[0].checked) score+=3;
     if(a9[0].checked) score+=3;
     if(a10[0].checked) score+=3;
+    alert ("单选："+score);
 
     if(a11[0].checked && a11[1].checked && !a11[2].checked && !a11[3].checked) score+=3;
     if(a12[0].checked && a12[1].checked && !a12[2].checked && !a12[3].checked) score+=3;
@@ -288,17 +289,17 @@
     if(a18[0].checked && a18[1].checked && !a18[2].checked && !a18[3].checked) score+=3;
     if(a19[0].checked && a19[1].checked && !a19[2].checked && !a19[3].checked) score+=3;
     if(a20[0].checked && a20[1].checked && !a20[2].checked && !a20[3].checked) score+=3;
-
+    alert ("多选："+score);
 
     if(a21[0].checked) score+=4;
     if(a22[0].checked) score+=4;
     if(a23[0].checked) score+=4;
     if(a24[0].checked) score+=4;
     if(a25[0].checked) score+=4;
-
+    alert ("判断："+score);
     if(document.getElementsByName("a26").value!="") score+=10;
     if(document.getElementsByName("a27").value!="") score+=10;
-
+    alert ("主观："+score);
     alert("Final score is:"+score);
 }    
     </script>
