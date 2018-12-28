@@ -307,12 +307,11 @@
      <script type="text/javascript">
     function update_score(){
         var lesson_id=localStorage.lesson_id;
-        alert("id:"+lesson_id);
-        alert("score:"+score);
+        alert("Your Score:"+score);
         var urlstr = "";
         var postdata;
         urlstr="api/updateScore";
-        postdata = {"status":1,"course_id":lesson_id,"score":score};
+        postdata = {"status":0,"course_id":lesson_id,"score":score};
         $.ajax({
                 type: "POST",
                 url: urlstr,
